@@ -17,6 +17,21 @@ Features to be Done
   More features to be added accordinly.
 
 
+
+
+Work Flow ->
+
+   Login/Reg -> Home -> Create new trip -> Trip create page- > Add people form users list -> Scheduling (Date time) -> Add budget (should split against the count of users in the trip) -> Create -> Show in the homescreen as a list 
+
+   On Tap in the list of the listview index -> view details of the trip including the map and users included -> add option to add media on the way to the trip.
+
+
+
+   Special Feature (No Required) ->
+    Track location to show the position of users it the trip using Gmap
+
+
+
   Contributers
 
   Abin vs,
