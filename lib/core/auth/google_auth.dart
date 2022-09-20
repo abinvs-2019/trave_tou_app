@@ -35,7 +35,6 @@ class GoogleSigning {
     } catch (e) {
       return const Right('Google-SingInError-Occured');
     }
-
     return Left(user);
   }
 
