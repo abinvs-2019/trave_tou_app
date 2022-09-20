@@ -19,5 +19,5 @@ Features to be Done
 
   Contributers
 
-  Abin vs
+  Abin vs,
   Ashwin Raj

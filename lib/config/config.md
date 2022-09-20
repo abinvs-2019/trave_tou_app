@@ -1,0 +1,1 @@
+thid folder includes all global and constant variables and routing if needed
