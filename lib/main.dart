@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_app/screens/home/home.dart';
+import 'package:tourist_app/screens/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Trave Tou',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }
