@@ -48,6 +48,9 @@ dependencies:
   flutter_bloc: ^8.1.1
   freezed_annotation: ^2.1.0
 
+  #Local Storage
+  shared_preferences: ^2.0.15
+
   #Dev
   dartz: ^0.10.1
 
