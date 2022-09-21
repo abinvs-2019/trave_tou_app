@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() googleLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? googleLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? googleLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_G_Login value) googleLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_G_Login value)? googleLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_G_Login value)? googleLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,36 +66,36 @@ class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$_G_LoginCopyWith<$Res> {
+  factory _$$_G_LoginCopyWith(
+          _$_G_Login value, $Res Function(_$_G_Login) then) =
+      __$$_G_LoginCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
-      : super(_value, (v) => _then(v as _$_Started));
+class __$$_G_LoginCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$_G_LoginCopyWith<$Res> {
+  __$$_G_LoginCopyWithImpl(_$_G_Login _value, $Res Function(_$_G_Login) _then)
+      : super(_value, (v) => _then(v as _$_G_Login));
 
   @override
-  _$_Started get _value => super._value as _$_Started;
+  _$_G_Login get _value => super._value as _$_G_Login;
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$_G_Login implements _G_Login {
+  const _$_G_Login();
 
   @override
   String toString() {
-    return 'AuthEvent.started()';
+    return 'AuthEvent.googleLogin()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType && other is _$_G_Login);
   }
 
   @override
@@ -104,27 +104,27 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() googleLogin,
   }) {
-    return started();
+    return googleLogin();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? googleLogin,
   }) {
-    return started?.call();
+    return googleLogin?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? googleLogin,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (googleLogin != null) {
+      return googleLogin();
     }
     return orElse();
   }
@@ -132,69 +132,44 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_G_Login value) googleLogin,
   }) {
-    return started(this);
+    return googleLogin(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_G_Login value)? googleLogin,
   }) {
-    return started?.call(this);
+    return googleLogin?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_G_Login value)? googleLogin,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (googleLogin != null) {
+      return googleLogin(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements AuthEvent {
-  const factory _Started() = _$_Started;
+abstract class _G_Login implements AuthEvent {
+  const factory _G_Login() = _$_G_Login;
 }
 
 /// @nodoc
 mixin _$AuthState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  bool get isLogging => throw _privateConstructorUsedError;
+  bool? get isError => throw _privateConstructorUsedError;
+  bool get isLoggedIn => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AuthStateCopyWith<AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -202,6 +177,7 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
+  $Res call({bool isLogging, bool? isError, bool isLoggedIn});
 }
 
 /// @nodoc
@@ -211,101 +187,128 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   final AuthState _value;
   // ignore: unused_field
   final $Res Function(AuthState) _then;
-}
-
-/// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
 
   @override
-  _$_Initial get _value => super._value as _$_Initial;
+  $Res call({
+    Object? isLogging = freezed,
+    Object? isError = freezed,
+    Object? isLoggedIn = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLogging: isLogging == freezed
+          ? _value.isLogging
+          : isLogging // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: isError == freezed
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isLoggedIn: isLoggedIn == freezed
+          ? _value.isLoggedIn
+          : isLoggedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$$_AuthStateCopyWith(
+          _$_AuthState value, $Res Function(_$_AuthState) then) =
+      __$$_AuthStateCopyWithImpl<$Res>;
+  @override
+  $Res call({bool isLogging, bool? isError, bool isLoggedIn});
+}
+
+/// @nodoc
+class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$_AuthStateCopyWith<$Res> {
+  __$$_AuthStateCopyWithImpl(
+      _$_AuthState _value, $Res Function(_$_AuthState) _then)
+      : super(_value, (v) => _then(v as _$_AuthState));
+
+  @override
+  _$_AuthState get _value => super._value as _$_AuthState;
+
+  @override
+  $Res call({
+    Object? isLogging = freezed,
+    Object? isError = freezed,
+    Object? isLoggedIn = freezed,
+  }) {
+    return _then(_$_AuthState(
+      isLogging: isLogging == freezed
+          ? _value.isLogging
+          : isLogging // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: isError == freezed
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isLoggedIn: isLoggedIn == freezed
+          ? _value.isLoggedIn
+          : isLoggedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_AuthState implements _AuthState {
+  const _$_AuthState(
+      {required this.isLogging, this.isError, required this.isLoggedIn});
+
+  @override
+  final bool isLogging;
+  @override
+  final bool? isError;
+  @override
+  final bool isLoggedIn;
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'AuthState(isLogging: $isLogging, isError: $isError, isLoggedIn: $isLoggedIn)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthState &&
+            const DeepCollectionEquality().equals(other.isLogging, isLogging) &&
+            const DeepCollectionEquality().equals(other.isError, isError) &&
+            const DeepCollectionEquality()
+                .equals(other.isLoggedIn, isLoggedIn));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(isLogging),
+      const DeepCollectionEquality().hash(isError),
+      const DeepCollectionEquality().hash(isLoggedIn));
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
+      __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
 }
 
-abstract class _Initial implements AuthState {
-  const factory _Initial() = _$_Initial;
+abstract class _AuthState implements AuthState {
+  const factory _AuthState(
+      {required final bool isLogging,
+      final bool? isError,
+      required final bool isLoggedIn}) = _$_AuthState;
+
+  @override
+  bool get isLogging;
+  @override
+  bool? get isError;
+  @override
+  bool get isLoggedIn;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
