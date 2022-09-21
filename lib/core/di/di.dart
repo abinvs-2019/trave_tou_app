@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tourist_app/core/auth/auth.dart';
-import 'package:tourist_app/core/auth/google_auth.dart';
+import 'package:tourist_app/core/auth/google_auth/auth.dart';
+import 'package:tourist_app/core/auth/google_auth/google_auth.dart';
 
 import 'di.config.dart';
 

@@ -2,10 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tourist_app/core/auth/google_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tourist_app/config/constants.dart';
+import 'package:tourist_app/core/auth/google_auth/google_auth.dart';
+import 'package:tourist_app/core/auth/google_auth/logged_in.dart';
 
 @LazySingleton(as: IGoogleSigning)
-class Auth implements IGoogleSigning {
+class Auth implements IGoogleSigning, ILoggedIn {
   @override
   Future<Either<User?, String>> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -41,17 +44,25 @@ class Auth implements IGoogleSigning {
     return Left(user);
   }
 
-  @override
-  logoutWithGoogle() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signOut();
-  }
-
   //Need to store shared preference data if logged in bool value
   //Need to store google auth data to firestore
   @override
-  Future<Either<String, String>> postLoggedInData() async {
-    return const Right('_r');
+  Future postLoggedInData() async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setBool(SESSION_KEY, true);
+  }
+
+  @override
+  Future clearLoggedInData() async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setBool(SESSION_KEY, true);
+  }
+
+  @override
+  Future signOut() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signOut();
+    return true;
   }
 }

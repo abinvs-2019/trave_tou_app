@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_buttons/auth_buttons.dart'
     show GoogleAuthButton, AuthButtonStyle, AuthButtonType, AuthIconType;
@@ -41,31 +42,13 @@ class LoginScreen extends StatelessWidget {
       },
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              // RichText(
-              //   text: TextSpan(
-              //     // Note: Styles for TextSpans must be explicitly defined.
-              //     // Child text spans will inherit styles from parent
-
-              //     children: <TextSpan>[
-              //       TextSpan(text: 'Trip', style: GoogleFonts.poppins()),
-              //       TextSpan(
-              //           text: 'Setter',
-              //           style: GoogleFonts.ptSans(fontWeight: FontWeight.bold)),
-              //     ],
-              //   ),
-              // ),
-              GestureDetector(
-                child: GoogleAuthButton(
-                  onPressed: () {
-                    context.read<AuthBloc>().add(const AuthEvent.googleLogin());
-                  },
-                  style: const AuthButtonStyle(buttonType: AuthButtonType.icon),
-                ),
-              ),
-            ],
+          child: GestureDetector(
+            child: GoogleAuthButton(
+              onPressed: () {
+                context.read<AuthBloc>().add(const AuthEvent.googleLogin());
+              },
+              style: const AuthButtonStyle(buttonType: AuthButtonType.icon),
+            ),
           ),
         ),
       ),

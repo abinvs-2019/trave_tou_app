@@ -9,8 +9,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../application/auth/bloc/auth_bloc.dart' as _i3;
-import '../auth/auth.dart' as _i4;
-import '../auth/google_auth.dart'
+import '../auth/google_auth/auth.dart' as _i4;
+import '../auth/google_auth/google_auth.dart'
     as _i5; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars

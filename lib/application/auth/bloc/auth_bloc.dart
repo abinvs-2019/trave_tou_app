@@ -3,8 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tourist_app/core/auth/auth.dart';
-import 'package:tourist_app/core/auth/google_auth.dart';
+import 'package:tourist_app/core/auth/google_auth/auth.dart';
+import 'package:tourist_app/core/auth/google_auth/google_auth.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
