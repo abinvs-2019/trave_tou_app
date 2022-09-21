@@ -47,6 +47,7 @@ dependencies:
   #Ui
   auth_buttons: ^3.0.0
   fluttertoast: ^8.0.9
+  google_fonts: ^3.0.1
 
   #StateManagement
   flutter_bloc: ^8.1.1

@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Trave Tou',
-        theme: ThemeData(primarySwatch: Colors.blue),
+        themeMode: ThemeMode.dark,
+        theme: ThemeData.dark(),
         home: const LoginScreen(),
       ),
     );

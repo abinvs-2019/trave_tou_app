@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
 
-abstract class LoggedIn {
+abstract class ILoggedIn {
   Future<Either<String, String>> postLoggedInData();
 }

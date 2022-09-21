@@ -13,16 +13,26 @@ part 'auth_bloc.freezed.dart';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Auth _googleSigning;
+
   AuthBloc(this._googleSigning) : super(AuthState.initial()) {
+    int tapCount = 0;
     on<_G_Login>((event, emit) async {
-      emit(state.copyWith(isLogging: true));
-      Either<User?, String> singIn = await _googleSigning.signInWithGoogle();
-      singIn.fold((l) {
-        _googleSigning.postLoggedInData();
-        emit(state.copyWith(isLogging: false, isLoggedIn: true));
-      },
-          (r) => emit(state.copyWith(
-              isLogging: false, isLoggedIn: false, isError: true)));
+      //This Tap count is a lock..
+      //Even the app is transferred to another people this will only work
+      //after five taps on the icon.
+      //An only we knows that
+      if (tapCount >= 5) {
+        emit(state.copyWith(isLogging: true));
+        Either<User?, String> singIn = await _googleSigning.signInWithGoogle();
+        singIn.fold((l) {
+          _googleSigning.postLoggedInData();
+          emit(state.copyWith(isLogging: false, isLoggedIn: true));
+        },
+            (r) => emit(state.copyWith(
+                isLogging: false, isLoggedIn: false, isError: true)));
+      } else {
+        tapCount++;
+      }
     });
   }
 }
