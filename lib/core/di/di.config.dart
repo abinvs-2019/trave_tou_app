@@ -8,10 +8,10 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../application/auth/bloc/auth_bloc.dart' as _i5;
+import '../../application/auth/bloc/auth_bloc.dart' as _i3;
 import '../auth/auth.dart' as _i4;
 import '../auth/google_auth.dart'
-    as _i3; // ignore_for_file: unnecessary_lambdas
+    as _i5; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -25,7 +25,7 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.lazySingleton<_i3.IGoogleSigning>(() => _i4.Auth());
-  gh.factory<_i5.AuthBloc>(() => _i5.AuthBloc(get<_i3.IGoogleSigning>()));
+  gh.factory<_i3.AuthBloc>(() => _i3.AuthBloc(get<_i4.Auth>()));
+  gh.lazySingleton<_i5.IGoogleSigning>(() => _i4.Auth());
   return get;
 }
