@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
+import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/core/firestore/I_firestore.dart';
 
+@LazySingleton(as: Firestore)
 class FirestoreFunctions implements Firestore {
-
   @override
   Future addDataToCollection(
       String collection, Map<String, dynamic> data) async {
