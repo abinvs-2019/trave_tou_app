@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const CircularProgressIndicator(strokeWidth: 2),
-                      Text('Logging In..', style: GoogleFonts.ptSans())
+                      Text('Logging In..', style: GoogleFonts.ptSans(color: Colors.grey))
                     ],
                   ),
                 ),

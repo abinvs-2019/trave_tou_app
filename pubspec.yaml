@@ -43,6 +43,7 @@ dependencies:
 
   #For Database
   firebase_storage: ^10.3.8
+  cloud_firestore: ^3.4.8
 
   #Ui
   auth_buttons: ^3.0.0
