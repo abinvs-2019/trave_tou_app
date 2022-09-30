@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,7 +9,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Container(),
       floatingActionButton:
-          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
+          FloatingActionButton(onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const TripAdding()));
+          }, child: const Icon(Icons.add)),
     );
   }
 }
