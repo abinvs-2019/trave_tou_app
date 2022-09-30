@@ -4,10 +4,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_app/config/constants.dart';
+import 'package:tourist_app/config/firestore_collection.dart';
 import 'package:tourist_app/core/auth/google_auth/google_auth.dart';
 import 'package:tourist_app/core/auth/google_auth/logged_in.dart';
+import 'package:tourist_app/infrastructure/firestore/firestore.dart';
 
 @LazySingleton(as: IGoogleSigning)
+@injectable
 class Auth implements IGoogleSigning, ILoggedIn {
   @override
   Future<Either<User?, String>> signInWithGoogle() async {
@@ -41,15 +44,29 @@ class Auth implements IGoogleSigning, ILoggedIn {
     } catch (e) {
       return const Right('Google-SingInError-Occured');
     }
-    return Left(user);
+    if (user != null) {
+      return Left(user);
+    } else {
+      return const Right('Missing-USER_DATA');
+    }
   }
 
   //Need to store shared preference data if logged in bool value
   //Need to store google auth data to firestore
   @override
-  Future postLoggedInData() async {
+  Future postLoggedInData({User? userData}) async {
     var prefs = await SharedPreferences.getInstance();
-    prefs.setBool(SESSION_KEY, true);
+    await prefs.setBool(SESSION_KEY, true);
+    await prefs.setString(PROFILE_EMAIL_KEY, userData!.email!);
+    await prefs.setString(PROFILE_IMAGE_KEY, userData.photoURL!);
+    await prefs.setString(PROFILE_NAME_KEY, userData.displayName!);
+
+    FirestoreFunctions().addDataToCollection(Collections.USERS, {
+      'USER_NAME': userData.displayName,
+      'Profile_image': userData.photoURL,
+      'Phone_Number': userData.phoneNumber,
+      'uuid': userData.uid,
+    });
   }
 
   @override

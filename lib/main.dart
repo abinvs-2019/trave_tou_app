@@ -2,10 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
+import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/screens/auth/login.dart';
 import 'package:tourist_app/screens/splash/splash.dart';
-import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,16 +20,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Need to Define themes TODO - 1
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(create: (context) => getIt<AuthBloc>()),
+        BlocProvider<TripBloc>(create: (context) => getIt<TripBloc>()),
       ],
       child: MaterialApp(
         title: 'Trave Tou',
         themeMode: ThemeMode.dark,
         theme: ThemeData.dark(useMaterial3: true),
-        home: const TripAdding(),
+        home: const SplashScreen(),
       ),
     );
   }

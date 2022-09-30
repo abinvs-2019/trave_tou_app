@@ -54,9 +54,11 @@ dependencies:
   #StateManagement
   flutter_bloc: ^8.1.1
   freezed_annotation: ^2.1.0
+
   #Di
   get_it: ^7.2.0
   injectable: ^1.5.3
+  json_serializable: ^6.4.1
 
   #Local Storage
   shared_preferences: ^2.0.15

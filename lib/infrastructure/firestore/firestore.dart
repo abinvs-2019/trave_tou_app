@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/core/firestore/I_firestore.dart';
 
+@Injectable()
 @LazySingleton(as: Firestore)
 class FirestoreFunctions implements Firestore {
   @override
   Future addDataToCollection(
       String collection, Map<String, dynamic> data) async {
-    await FirebaseFirestore.instance.collection(collection).add(data);
+    var res = await FirebaseFirestore.instance.collection(collection).add(data);
+    return res.id;
   }
 
   // updates an existing entry (missing fields won't be touched on update), document must exist

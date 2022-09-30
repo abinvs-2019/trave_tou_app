@@ -19,32 +19,44 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() googleLogin,
+    required TResult Function() getSession,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_G_Login value) googleLogin,
+    required TResult Function(_APP_SESSION value) getSession,
+    required TResult Function(_APP_Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,6 +117,8 @@ class _$_G_Login implements _G_Login {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() googleLogin,
+    required TResult Function() getSession,
+    required TResult Function() logout,
   }) {
     return googleLogin();
   }
@@ -113,6 +127,8 @@ class _$_G_Login implements _G_Login {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
   }) {
     return googleLogin?.call();
   }
@@ -121,6 +137,8 @@ class _$_G_Login implements _G_Login {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (googleLogin != null) {
@@ -133,6 +151,8 @@ class _$_G_Login implements _G_Login {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_G_Login value) googleLogin,
+    required TResult Function(_APP_SESSION value) getSession,
+    required TResult Function(_APP_Logout value) logout,
   }) {
     return googleLogin(this);
   }
@@ -141,6 +161,8 @@ class _$_G_Login implements _G_Login {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
   }) {
     return googleLogin?.call(this);
   }
@@ -149,6 +171,8 @@ class _$_G_Login implements _G_Login {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (googleLogin != null) {
@@ -163,10 +187,234 @@ abstract class _G_Login implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$$_APP_SESSIONCopyWith<$Res> {
+  factory _$$_APP_SESSIONCopyWith(
+          _$_APP_SESSION value, $Res Function(_$_APP_SESSION) then) =
+      __$$_APP_SESSIONCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_APP_SESSIONCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$_APP_SESSIONCopyWith<$Res> {
+  __$$_APP_SESSIONCopyWithImpl(
+      _$_APP_SESSION _value, $Res Function(_$_APP_SESSION) _then)
+      : super(_value, (v) => _then(v as _$_APP_SESSION));
+
+  @override
+  _$_APP_SESSION get _value => super._value as _$_APP_SESSION;
+}
+
+/// @nodoc
+
+class _$_APP_SESSION implements _APP_SESSION {
+  const _$_APP_SESSION();
+
+  @override
+  String toString() {
+    return 'AuthEvent.getSession()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_APP_SESSION);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() googleLogin,
+    required TResult Function() getSession,
+    required TResult Function() logout,
+  }) {
+    return getSession();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
+  }) {
+    return getSession?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (getSession != null) {
+      return getSession();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_G_Login value) googleLogin,
+    required TResult Function(_APP_SESSION value) getSession,
+    required TResult Function(_APP_Logout value) logout,
+  }) {
+    return getSession(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
+  }) {
+    return getSession?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (getSession != null) {
+      return getSession(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _APP_SESSION implements AuthEvent {
+  const factory _APP_SESSION() = _$_APP_SESSION;
+}
+
+/// @nodoc
+abstract class _$$_APP_LogoutCopyWith<$Res> {
+  factory _$$_APP_LogoutCopyWith(
+          _$_APP_Logout value, $Res Function(_$_APP_Logout) then) =
+      __$$_APP_LogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_APP_LogoutCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$_APP_LogoutCopyWith<$Res> {
+  __$$_APP_LogoutCopyWithImpl(
+      _$_APP_Logout _value, $Res Function(_$_APP_Logout) _then)
+      : super(_value, (v) => _then(v as _$_APP_Logout));
+
+  @override
+  _$_APP_Logout get _value => super._value as _$_APP_Logout;
+}
+
+/// @nodoc
+
+class _$_APP_Logout implements _APP_Logout {
+  const _$_APP_Logout();
+
+  @override
+  String toString() {
+    return 'AuthEvent.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_APP_Logout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() googleLogin,
+    required TResult Function() getSession,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? googleLogin,
+    TResult Function()? getSession,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_G_Login value) googleLogin,
+    required TResult Function(_APP_SESSION value) getSession,
+    required TResult Function(_APP_Logout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_G_Login value)? googleLogin,
+    TResult Function(_APP_SESSION value)? getSession,
+    TResult Function(_APP_Logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _APP_Logout implements AuthEvent {
+  const factory _APP_Logout() = _$_APP_Logout;
+}
+
+/// @nodoc
 mixin _$AuthState {
   bool get isLogging => throw _privateConstructorUsedError;
   bool? get isError => throw _privateConstructorUsedError;
   bool get isLoggedIn => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get profileImage => throw _privateConstructorUsedError;
+  bool? get logout => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -177,7 +425,14 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call({bool isLogging, bool? isError, bool isLoggedIn});
+  $Res call(
+      {bool isLogging,
+      bool? isError,
+      bool isLoggedIn,
+      String? name,
+      String? email,
+      String? profileImage,
+      bool? logout});
 }
 
 /// @nodoc
@@ -193,6 +448,10 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
     Object? isLogging = freezed,
     Object? isError = freezed,
     Object? isLoggedIn = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? profileImage = freezed,
+    Object? logout = freezed,
   }) {
     return _then(_value.copyWith(
       isLogging: isLogging == freezed
@@ -207,6 +466,22 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.isLoggedIn
           : isLoggedIn // ignore: cast_nullable_to_non_nullable
               as bool,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profileImage: profileImage == freezed
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logout: logout == freezed
+          ? _value.logout
+          : logout // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -217,7 +492,14 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _$_AuthState value, $Res Function(_$_AuthState) then) =
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLogging, bool? isError, bool isLoggedIn});
+  $Res call(
+      {bool isLogging,
+      bool? isError,
+      bool isLoggedIn,
+      String? name,
+      String? email,
+      String? profileImage,
+      bool? logout});
 }
 
 /// @nodoc
@@ -235,6 +517,10 @@ class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     Object? isLogging = freezed,
     Object? isError = freezed,
     Object? isLoggedIn = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? profileImage = freezed,
+    Object? logout = freezed,
   }) {
     return _then(_$_AuthState(
       isLogging: isLogging == freezed
@@ -249,6 +535,22 @@ class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.isLoggedIn
           : isLoggedIn // ignore: cast_nullable_to_non_nullable
               as bool,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profileImage: profileImage == freezed
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logout: logout == freezed
+          ? _value.logout
+          : logout // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -257,7 +559,13 @@ class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
 class _$_AuthState implements _AuthState {
   const _$_AuthState(
-      {required this.isLogging, this.isError, required this.isLoggedIn});
+      {required this.isLogging,
+      this.isError,
+      required this.isLoggedIn,
+      this.name,
+      this.email,
+      this.profileImage,
+      required this.logout});
 
   @override
   final bool isLogging;
@@ -265,10 +573,18 @@ class _$_AuthState implements _AuthState {
   final bool? isError;
   @override
   final bool isLoggedIn;
+  @override
+  final String? name;
+  @override
+  final String? email;
+  @override
+  final String? profileImage;
+  @override
+  final bool? logout;
 
   @override
   String toString() {
-    return 'AuthState(isLogging: $isLogging, isError: $isError, isLoggedIn: $isLoggedIn)';
+    return 'AuthState(isLogging: $isLogging, isError: $isError, isLoggedIn: $isLoggedIn, name: $name, email: $email, profileImage: $profileImage, logout: $logout)';
   }
 
   @override
@@ -279,7 +595,12 @@ class _$_AuthState implements _AuthState {
             const DeepCollectionEquality().equals(other.isLogging, isLogging) &&
             const DeepCollectionEquality().equals(other.isError, isError) &&
             const DeepCollectionEquality()
-                .equals(other.isLoggedIn, isLoggedIn));
+                .equals(other.isLoggedIn, isLoggedIn) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.profileImage, profileImage) &&
+            const DeepCollectionEquality().equals(other.logout, logout));
   }
 
   @override
@@ -287,7 +608,11 @@ class _$_AuthState implements _AuthState {
       runtimeType,
       const DeepCollectionEquality().hash(isLogging),
       const DeepCollectionEquality().hash(isError),
-      const DeepCollectionEquality().hash(isLoggedIn));
+      const DeepCollectionEquality().hash(isLoggedIn),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(profileImage),
+      const DeepCollectionEquality().hash(logout));
 
   @JsonKey(ignore: true)
   @override
@@ -299,7 +624,11 @@ abstract class _AuthState implements AuthState {
   const factory _AuthState(
       {required final bool isLogging,
       final bool? isError,
-      required final bool isLoggedIn}) = _$_AuthState;
+      required final bool isLoggedIn,
+      final String? name,
+      final String? email,
+      final String? profileImage,
+      required final bool? logout}) = _$_AuthState;
 
   @override
   bool get isLogging;
@@ -307,6 +636,14 @@ abstract class _AuthState implements AuthState {
   bool? get isError;
   @override
   bool get isLoggedIn;
+  @override
+  String? get name;
+  @override
+  String? get email;
+  @override
+  String? get profileImage;
+  @override
+  bool? get logout;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
