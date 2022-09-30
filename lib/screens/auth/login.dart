@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_buttons/auth_buttons.dart'
@@ -8,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
 import 'package:tourist_app/config/globals.dart';
 import 'package:tourist_app/screens/home/home.dart';
+import 'package:tourist_app/screens/splash/splash.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,6 +19,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        log("$state");
         if (state.isLoggedIn) {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const HomePage()));
@@ -37,7 +41,8 @@ class LoginScreen extends StatelessWidget {
               ),
               false);
         } else {
-          Fluttertoast.showToast(msg: 'Error Occured while loggin in');
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
         }
       },
       child: Scaffold(
