@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,12 +63,23 @@ class Auth implements IGoogleSigning, ILoggedIn {
     await prefs.setString(PROFILE_IMAGE_KEY, userData.photoURL!);
     await prefs.setString(PROFILE_NAME_KEY, userData.displayName!);
 
-    FirestoreFunctions().addDataToCollection(Collections.USERS, {
-      'USER_NAME': userData.displayName,
-      'Profile_image': userData.photoURL,
-      'Phone_Number': userData.phoneNumber,
-      'uuid': userData.uid,
-    });
+    ///Checking if the user already exist
+    var isEsxistEmail = await FirebaseFirestore.instance
+        .collection(Collections.USERS)
+        .where('email', isEqualTo: userData.email!)
+        .get();
+    if (isEsxistEmail.docs.isEmpty) {
+      FirestoreFunctions().addDataToCollection(Collections.USERS, {
+        'USER_NAME': userData.displayName,
+        'Profile_image': userData.photoURL,
+        'Phone_Number': userData.phoneNumber,
+        'uuid': userData.uid,
+        'email': userData.email,
+        'role': ''
+      });
+    } else {
+      Fluttertoast.showToast(msg: 'Welcome Back');
+    }
   }
 
   @override

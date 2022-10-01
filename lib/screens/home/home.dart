@@ -5,6 +5,7 @@ import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
 import 'package:tourist_app/config/firestore_collection.dart';
 import 'package:tourist_app/screens/profile/profile.dart';
 import 'package:tourist_app/screens/trip/trip_adding.dart';
+import 'package:tourist_app/screens/users/user.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -79,7 +80,14 @@ class HomePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => const ProfilePage()));
                     }),
-                ListTile(title: const Text('Friends'), onTap: () {}),
+                ListTile(
+                    title: const Text('Friends'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const UsersList()));
+                    }),
               ]),
               Container(
                   alignment: Alignment.bottomCenter,
