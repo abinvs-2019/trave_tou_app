@@ -6,6 +6,7 @@ import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/screens/auth/login.dart';
 import 'package:tourist_app/screens/splash/splash.dart';
+import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,10 +27,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<TripBloc>(create: (context) => getIt<TripBloc>()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Trave Tou',
         themeMode: ThemeMode.dark,
         theme: ThemeData.dark(useMaterial3: true),
-        home: const SplashScreen(),
+        home: const TripAdding(),
       ),
     );
   }

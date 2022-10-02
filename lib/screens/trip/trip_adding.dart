@@ -4,6 +4,7 @@ import 'package:custom_date_range_picker/custom_date_range_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/domain/trip_create/trip_create.dart';
@@ -83,6 +84,26 @@ class TripAddBody extends StatelessWidget {
                       bottomLeft: Radius.circular(15),
                       bottomRight: Radius.circular(15)))),
           SizedBox(height: size.height * .04),
+          Center(
+              child: GestureDetector(
+                onTap: (){
+                  ImagePicker().pickImage(source: ImageSource.gallery);
+                },
+                child: Container(
+                          height: size.height * .20,
+                          width: size.width * .90,
+                          decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    width: 4,
+                  )),
+                  child: const Center(
+                    child: Text("Tap to choose image",
+                 ),
+                  ),
+                        ),
+              )),
+          SizedBox(height: size.height * .04),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -156,7 +177,7 @@ class TripAddBody extends StatelessWidget {
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           decoration: const InputDecoration(
-                              labelText: "Expense",
+                              // labelText: "Expense",
                               labelStyle: TextStyle(color: Colors.white),
                               prefix:
                                   Padding(padding: EdgeInsets.only(top: 16.0)),
