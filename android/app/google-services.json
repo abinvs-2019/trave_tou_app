@@ -22,6 +22,22 @@
           }
         },
         {
+          "client_id": "352256142433-s1n1vde4rj9pu7ttgp9vf6ho4bftvdm3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tou.mobile.app",
+            "certificate_hash": "468e1db13c07d32a86e1fb3489907df4f1cad2ef"
+          }
+        },
+        {
+          "client_id": "352256142433-u9fc9ov0k8rqpfinigo44rqkvbplqab2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tou.mobile.app",
+            "certificate_hash": "15419a3f1658eddd170578179865065da4fe16bb"
+          }
+        },
+        {
           "client_id": "352256142433-7o8vmdtt408qdalbuonhg7rl90ueiq2s.apps.googleusercontent.com",
           "client_type": 3
         }
