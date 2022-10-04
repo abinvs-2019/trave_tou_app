@@ -39,6 +39,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       onTap: () {},
+                      onLongPress: () {},
                       title: Text(
                         data['Trip_name'],
                       ),
@@ -64,14 +65,13 @@ class HomePage extends StatelessWidget {
             children: [
               Column(children: [
                 DrawerHeader(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage('${state.profileImage}'),
-                          fit: BoxFit.cover)),
-                  child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text('${state.name}')),
-                ),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage('${state.profileImage}'),
+                            fit: BoxFit.cover)),
+                    child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text('${state.name}'))),
                 ListTile(
                     title: const Text('Profile'),
                     onTap: () {
@@ -86,7 +86,8 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const UsersList()));
+                              builder: (context) =>
+                                  const UsersList(selectable: false)));
                     }),
               ]),
               Container(

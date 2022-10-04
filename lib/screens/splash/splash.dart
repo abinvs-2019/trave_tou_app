@@ -19,8 +19,8 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.isLoggedIn) {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
           } else {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()));

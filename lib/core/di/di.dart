@@ -14,6 +14,6 @@ final getIt = GetIt.instance;
 Future<void> configureDependencies() async {
   await $initGetIt(getIt, environment: Environment.prod);
   getIt.registerSingleton<Auth>(Auth());
-  getIt.registerSingleton<TripCreateModel>(
-      const TripCreateModel(expense: '', fromDate: '', name: '', toDate: ''));
+  getIt.registerSingleton<TripCreateModel>(const TripCreateModel(
+      expense: '', fromDate: '', name: '', toDate: '', users: []));
 }

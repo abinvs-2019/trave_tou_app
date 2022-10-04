@@ -9,6 +9,8 @@ import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/domain/trip_create/trip_create.dart';
 
+import '../users/user.dart';
+
 TripCreateModel tripCreateModel = getIt.get<TripCreateModel>();
 
 class TripAdding extends StatelessWidget {
@@ -42,8 +44,13 @@ class TripAdding extends StatelessWidget {
                     }
                     return ElevatedButton(
                         onPressed: () {
-                          context.read<TripBloc>().add(
-                              TripEvent.createTrip(model: tripCreateModel));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const UsersList(selectable: true)));
+                          // context.read<TripBloc>().add(
+                          //     TripEvent.createTrip(model: tripCreateModel));
                         },
                         child: const Center(child: Text('Add Trip')));
                   },
@@ -86,23 +93,17 @@ class TripAddBody extends StatelessWidget {
           SizedBox(height: size.height * .04),
           Center(
               child: GestureDetector(
-                onTap: (){
-                  ImagePicker().pickImage(source: ImageSource.gallery);
-                },
-                child: Container(
-                          height: size.height * .20,
-                          width: size.width * .90,
-                          decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                    width: 4,
-                  )),
-                  child: const Center(
-                    child: Text("Tap to choose image",
-                 ),
-                  ),
-                        ),
-              )),
+            onTap: () {
+              ImagePicker().pickImage(source: ImageSource.gallery);
+            },
+            child: Container(
+                height: size.height * .20,
+                width: size.width * .90,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 4)),
+                child: const Center(child: Text("Tap to choose image"))),
+          )),
           SizedBox(height: size.height * .04),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -124,9 +125,7 @@ class TripAddBody extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: size.height * .02,
-          ),
+          SizedBox(height: size.height * .02),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

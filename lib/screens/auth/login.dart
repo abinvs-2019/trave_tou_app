@@ -21,8 +21,8 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) {
         log("$state");
         if (state.isLoggedIn) {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
         } else if (state.isLogging) {
           showBottomSheetWithData(
               context,
@@ -42,8 +42,8 @@ class LoginScreen extends StatelessWidget {
               ),
               false);
         } else {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
         }
       },
       child: Scaffold(

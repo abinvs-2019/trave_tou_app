@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         title: 'Trave Tou',
         themeMode: ThemeMode.dark,
         theme: ThemeData.dark(useMaterial3: true),
-        home: const TripAdding(),
+        home: const SplashScreen(),
       ),
     );
   }
