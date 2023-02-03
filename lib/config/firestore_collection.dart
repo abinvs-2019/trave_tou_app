@@ -6,4 +6,5 @@ class Collections {
   /// go with this finals.
   static const USERS = 'User_Data';
   static const TRIP_DATA = 'Trip_Data';
+  static const CHAT_DATA = 'chat';
 }

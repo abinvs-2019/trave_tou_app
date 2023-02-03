@@ -1,5 +1,3 @@
-
-
 abstract class Firestore {
   // just a simple get
   Future getAllDataOfCollection(String collection);

@@ -39,7 +39,6 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       onTap: () {},
-                      onLongPress: () {},
                       title: Text(
                         data['Trip_name'],
                       ),

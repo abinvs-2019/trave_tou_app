@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
+import 'package:tourist_app/application/chat/bloc/chat_bloc.dart';
 import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/screens/auth/login.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthBloc>(create: (context) => getIt<AuthBloc>()),
         BlocProvider<TripBloc>(create: (context) => getIt<TripBloc>()),
+        BlocProvider<ChatBloc>(create: (context) => getIt<ChatBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

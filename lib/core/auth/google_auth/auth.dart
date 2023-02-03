@@ -62,6 +62,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
     await prefs.setString(PROFILE_EMAIL_KEY, userData!.email!);
     await prefs.setString(PROFILE_IMAGE_KEY, userData.photoURL!);
     await prefs.setString(PROFILE_NAME_KEY, userData.displayName!);
+    await prefs.setString(USER_IDENTITY_KEY, userData.uid);
 
     ///Checking if the user already exist
     var isEsxistEmail = await FirebaseFirestore.instance

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
+import 'package:tourist_app/screens/chat_rooms/conversation.dart';
 import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 import '../../config/firestore_collection.dart';
@@ -65,7 +66,15 @@ class _UsersListState extends State<UsersList> {
                                   return data['role'] == null ||
                                           data['role'] == ''
                                       ? IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ConverstaionRoom(
+                                                            userUUID:
+                                                                data['uuid'])));
+                                          },
                                           icon: const Icon(Icons.message))
                                       : Text(data['role']);
                                 }
