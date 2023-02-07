@@ -73,15 +73,20 @@ class ConverstaionRoom extends StatelessWidget {
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.only(
                                                       topLeft:
-                                                          Radius.circular(10),
+                                                          const Radius.circular(
+                                                              10),
                                                       topRight:
-                                                          Radius.circular(10),
+                                                          const Radius.circular(
+                                                              10),
                                                       bottomLeft: 'isSentBy' ==
                                                               "${state.myId}"
-                                                          ? Radius.circular(10)
-                                                          : Radius.circular(10),
+                                                          ? const Radius
+                                                              .circular(10)
+                                                          : const Radius
+                                                              .circular(10),
                                                       bottomRight:
-                                                          Radius.circular(1)),
+                                                          const Radius.circular(
+                                                              1)),
                                                   color: ('isSentBy' ==
                                                           "${state.myId}"
                                                       ? Colors.grey.shade200
@@ -101,7 +106,7 @@ class ConverstaionRoom extends StatelessWidget {
                                           );
                                         },
                                       ),
-                                      SizedBox(height: 70)
+                                      const SizedBox(height: 70)
                                     ],
                                   );
                                 }

@@ -76,7 +76,24 @@ class _UsersListState extends State<UsersList> {
                                                                 data['uuid'])));
                                           },
                                           icon: const Icon(Icons.message))
-                                      : Text(data['role']);
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(data['role']),
+                                            IconButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ConverstaionRoom(
+                                                                  userUUID: data[
+                                                                      'uuid'])));
+                                                },
+                                                icon: const Icon(Icons.message))
+                                          ],
+                                        );
                                 }
                                 return const SizedBox();
                               },
