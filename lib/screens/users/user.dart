@@ -107,11 +107,6 @@ class _UsersListState extends State<UsersList> {
                       });
                 }
               }),
-      persistentFooterButtons: [
-        Container(
-          child: ElevatedButton(onPressed: () {}, child: const Text('Next')),
-        )
-      ],
     );
   }
 }

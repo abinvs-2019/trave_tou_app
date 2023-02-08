@@ -1,14 +1,11 @@
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tourist_app/infrastructure/firestore/firestore.dart';
 
 class FirebaseMessagingOverride {
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
+  FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
   //Creating the android channel
   AndroidNotificationChannel channel = const AndroidNotificationChannel(
       'high_importance_channel', // id
@@ -19,6 +16,8 @@ class FirebaseMessagingOverride {
 
   //Initializing the notification channels
   Future<void> init() async {
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    await FirebaseMessaging.instance.requestPermission();
     try {
       FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
         FirbaseFunctions().updateToken(fcmToken);
@@ -28,12 +27,12 @@ class FirebaseMessagingOverride {
         });
       });
 
-      FirebaseMessaging.onBackgroundMessage(
-          FirebaseMessagingOverride().firebaseMessagingBackgroundHandler);
+      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+
       await FirebaseMessaging.instance
           .setForegroundNotificationPresentationOptions(
               alert: true, badge: true, sound: true);
-      await flutterLocalNotificationsPlugin
+      await flutterLocalNotificationsPlugin!
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>()
           ?.createNotificationChannel(channel);
@@ -48,7 +47,7 @@ class FirebaseMessagingOverride {
     AndroidNotification? android = message.notification?.android;
     AppleNotification? ios = message.notification?.apple;
 
-    flutterLocalNotificationsPlugin.show(
+    flutterLocalNotificationsPlugin!.show(
       notification.hashCode,
       notification!.title!,
       notification.body,
@@ -67,7 +66,6 @@ class FirebaseMessagingOverride {
         ),
       ),
     );
-    await Firebase.initializeApp();
   }
 
 //Showing when in foreground
@@ -75,7 +73,7 @@ class FirebaseMessagingOverride {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
-      flutterLocalNotificationsPlugin.show(
+      flutterLocalNotificationsPlugin!.show(
           notification.hashCode,
           notification!.title!,
           notification.body,

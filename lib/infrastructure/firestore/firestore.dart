@@ -100,9 +100,13 @@ class FirbaseFunctions implements Firestore, FirebaseUpload {
   updateToken(String token) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var uid = await preferences.getString(USER_IDENTITY_KEY);
-    await FirebaseFirestore.instance
+
+    var collection = FirebaseFirestore.instance
         .collection(Collections.USERS)
-        .doc(uid)
-        .update({'token': token});
+        .where('uuid', isEqualTo: uid);
+    var querySnapshots = await collection.get();
+    for (var doc in querySnapshots.docs) {
+      await doc.reference.update({'token': token});
+    }
   }
 }

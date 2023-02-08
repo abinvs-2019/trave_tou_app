@@ -60,18 +60,18 @@ class ConverstaionRoom extends StatelessWidget {
                                         itemBuilder: (context, index) {
                                           //For playing audio if the lenght of builder is changes
                                           // Need refractor here.
-                                          if (previousListLengt >
-                                              snapshot.data!.docs.length) {
-                                            previousListLengt =
-                                                snapshot.data!.docs.length;
-                                            player.play(AssetSource(
-                                                'assets/audio/message_sent.mp3'));
-                                          }
+                                          // if (previousListLengt >
+                                          //     snapshot.data!.docs.length) {
+                                          //   previousListLengt =
+                                          //       snapshot.data!.docs.length;
+                                          //   player.play(AssetSource(
+                                          //       'audio/message_sent.mp3'));
+                                          // }
                                           DocumentSnapshot data =
                                               snapshot.data!.docs[index];
                                           DateTime date = DateTime
                                               .fromMillisecondsSinceEpoch(
-                                                  data['time']);
+                                                  int.parse(data['time']));
                                           return Container(
                                             padding: const EdgeInsets.only(
                                                 left: 14,
@@ -113,7 +113,7 @@ class ConverstaionRoom extends StatelessWidget {
                                                 child: Column(
                                                   children: [
                                                     Text(
-                                                      data['msg'],
+                                                      data['msg'].toString(),
                                                       style: const TextStyle(
                                                           fontSize: 12),
                                                     ),
@@ -168,7 +168,7 @@ class ConverstaionRoom extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: () {
                   if (controller.text.isNotEmpty) {
-                    player.play(AssetSource('assets/audio/message_sent.mp3'));
+                    player.play(AssetSource('audio/message_sent.mp3'));
                     context.read<ChatBloc>().add(ChatEvent.sendMessage(
                         message: controller.text, token: token));
                     controller.clear();

@@ -73,10 +73,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
 
     if (isEsxistEmail.docs.isEmpty) {
       String? token = await FirebaseMessaging.instance.getToken();
-      FirebaseFirestore.instance
-          .collection(Collections.USERS)
-          .doc(userData.uid)
-          .set({
+      FirebaseFirestore.instance.collection(Collections.USERS).add({
         'USER_NAME': userData.displayName,
         'Profile_image': userData.photoURL,
         'Phone_Number': userData.phoneNumber,

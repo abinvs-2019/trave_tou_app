@@ -14,6 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   await Firebase.initializeApp();
+  
   await FirebaseMessagingOverride().init();
   handlePermmision();
   runApp(const MyApp());
