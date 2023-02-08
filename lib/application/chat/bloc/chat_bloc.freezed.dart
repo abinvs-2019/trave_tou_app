@@ -19,21 +19,21 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message) sendMessage,
+    required TResult Function(String message, String token) sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message)? sendMessage,
+    TResult? Function(String message, String token)? sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message)? sendMessage,
+    TResult Function(String message, String token)? sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) =>
@@ -144,7 +144,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message) sendMessage,
+    required TResult Function(String message, String token) sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) {
     return getChatOnUsersId(userUid);
@@ -154,7 +154,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message)? sendMessage,
+    TResult? Function(String message, String token)? sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) {
     return getChatOnUsersId?.call(userUid);
@@ -164,7 +164,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message)? sendMessage,
+    TResult Function(String message, String token)? sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {
@@ -224,7 +224,7 @@ abstract class _$$_SendMsgCopyWith<$Res> {
           _$_SendMsg value, $Res Function(_$_SendMsg) then) =
       __$$_SendMsgCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({String message, String token});
 }
 
 /// @nodoc
@@ -238,11 +238,16 @@ class __$$_SendMsgCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? token = null,
   }) {
     return _then(_$_SendMsg(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -251,14 +256,16 @@ class __$$_SendMsgCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SendMsg implements _SendMsg {
-  const _$_SendMsg({required this.message});
+  const _$_SendMsg({required this.message, required this.token});
 
   @override
   final String message;
+  @override
+  final String token;
 
   @override
   String toString() {
-    return 'ChatEvent.sendMessage(message: $message)';
+    return 'ChatEvent.sendMessage(message: $message, token: $token)';
   }
 
   @override
@@ -266,11 +273,12 @@ class _$_SendMsg implements _SendMsg {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SendMsg &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, token);
 
   @JsonKey(ignore: true)
   @override
@@ -282,32 +290,32 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message) sendMessage,
+    required TResult Function(String message, String token) sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) {
-    return sendMessage(message);
+    return sendMessage(message, token);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message)? sendMessage,
+    TResult? Function(String message, String token)? sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) {
-    return sendMessage?.call(message);
+    return sendMessage?.call(message, token);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message)? sendMessage,
+    TResult Function(String message, String token)? sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
-      return sendMessage(message);
+      return sendMessage(message, token);
     }
     return orElse();
   }
@@ -348,9 +356,12 @@ class _$_SendMsg implements _SendMsg {
 }
 
 abstract class _SendMsg implements ChatEvent {
-  const factory _SendMsg({required final String message}) = _$_SendMsg;
+  const factory _SendMsg(
+      {required final String message,
+      required final String token}) = _$_SendMsg;
 
   String get message;
+  String get token;
   @JsonKey(ignore: true)
   _$$_SendMsgCopyWith<_$_SendMsg> get copyWith =>
       throw _privateConstructorUsedError;
@@ -422,7 +433,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message) sendMessage,
+    required TResult Function(String message, String token) sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) {
     return uploadImage(filePath);
@@ -432,7 +443,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message)? sendMessage,
+    TResult? Function(String message, String token)? sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) {
     return uploadImage?.call(filePath);
@@ -442,7 +453,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message)? sendMessage,
+    TResult Function(String message, String token)? sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {

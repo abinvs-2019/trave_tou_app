@@ -45,6 +45,10 @@ dependencies:
   firebase_storage: ^11.0.10
   cloud_firestore: ^4.3.1
 
+  #Push Notification
+  firebase_messaging: ^14.2.1
+  flutter_local_notifications: ^13.0.0
+
   #Ui
   auth_buttons: ^3.0.0
   fluttertoast: ^8.0.9
@@ -63,10 +67,11 @@ dependencies:
   #Local Storage
   shared_preferences: ^2.0.15
   permission_handler: ^10.2.0
+  image_picker: ^0.8.5+3
 
   #Dev
   dartz: ^0.10.1
-  image_picker: ^0.8.5+3
+  http: ^0.13.5
 
   #Media
   audioplayers: ^3.0.1

@@ -1,8 +1,13 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tourist_app/config/constants.dart';
+import 'package:tourist_app/config/firestore_collection.dart';
 import 'package:tourist_app/core/firebase_database/firebase_database.dart';
 import 'package:tourist_app/core/firestore/I_firestore.dart';
 
@@ -89,5 +94,15 @@ class FirbaseFunctions implements Firestore, FirebaseUpload {
       }
     });
     return isUploaded;
+  }
+
+  @override
+  updateToken(String token) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var uid = await preferences.getString(USER_IDENTITY_KEY);
+    await FirebaseFirestore.instance
+        .collection(Collections.USERS)
+        .doc(uid)
+        .update({'token': token});
   }
 }

@@ -10,8 +10,8 @@ import '../../config/firestore_collection.dart';
 
 class ConverstaionRoom extends StatelessWidget {
   TextEditingController controller = TextEditingController();
-  ConverstaionRoom({super.key, required this.userUUID});
-  String userUUID;
+  ConverstaionRoom({super.key, required this.userUUID, required this.token});
+  String userUUID, token;
   final player = AudioPlayer();
   var previousListLengt;
   @override
@@ -58,7 +58,6 @@ class ConverstaionRoom extends StatelessWidget {
                                         padding: const EdgeInsets.only(
                                             top: 10, bottom: 10),
                                         itemBuilder: (context, index) {
-
                                           //For playing audio if the lenght of builder is changes
                                           // Need refractor here.
                                           if (previousListLengt >
@@ -170,9 +169,8 @@ class ConverstaionRoom extends StatelessWidget {
                 onPressed: () {
                   if (controller.text.isNotEmpty) {
                     player.play(AssetSource('assets/audio/message_sent.mp3'));
-                    context
-                        .read<ChatBloc>()
-                        .add(ChatEvent.sendMessage(message: controller.text));
+                    context.read<ChatBloc>().add(ChatEvent.sendMessage(
+                        message: controller.text, token: token));
                     controller.clear();
                   }
                 },

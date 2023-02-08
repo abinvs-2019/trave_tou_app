@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_app/config/constants.dart';
 import 'package:tourist_app/config/firestore_collection.dart';
+import 'package:tourist_app/core/firebase_messaging/custom_send_push.dart';
 import 'package:tourist_app/infrastructure/firestore/firestore.dart';
 
 part 'chat_event.dart';
@@ -40,9 +41,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         'time': DateTime.now().millisecondsSinceEpoch.toString(),
         'isSentBy': myUId
       });
-      on<_UploadToStorage>((event, emit) async {
-        var isUploaed = await firestore.firebaseStroageUpload(event.filePath);
-      });
+      CustomPushApi.sendCustomPush(token: event.token, body: event.message, title: 'New Message recieved');
+    });
+    on<_UploadToStorage>((event, emit) async {
+      var isUploaed = await firestore.firebaseStroageUpload(event.filePath);
     });
   }
 }

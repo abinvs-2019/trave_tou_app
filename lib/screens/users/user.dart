@@ -73,8 +73,10 @@ class _UsersListState extends State<UsersList> {
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         ConverstaionRoom(
-                                                            userUUID:
-                                                                data['uuid'])));
+                                                          userUUID:
+                                                              data['uuid'],
+                                                          token: data['token'],
+                                                        )));
                                           },
                                           icon: const Icon(Icons.message))
                                       : Row(
@@ -89,8 +91,11 @@ class _UsersListState extends State<UsersList> {
                                                       MaterialPageRoute(
                                                           builder: (context) =>
                                                               ConverstaionRoom(
-                                                                  userUUID: data[
-                                                                      'uuid'])));
+                                                                userUUID: data[
+                                                                    'uuid'],
+                                                                token: data[
+                                                                    'token'],
+                                                              )));
                                                 },
                                                 icon: const Icon(Icons.message))
                                           ],

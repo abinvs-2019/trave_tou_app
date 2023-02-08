@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
@@ -69,15 +70,32 @@ class Auth implements IGoogleSigning, ILoggedIn {
         .collection(Collections.USERS)
         .where('email', isEqualTo: userData.email!)
         .get();
+
     if (isEsxistEmail.docs.isEmpty) {
-      FirbaseFunctions().addDataToCollection(Collections.USERS, {
+      String? token = await FirebaseMessaging.instance.getToken();
+      FirebaseFirestore.instance
+          .collection(Collections.USERS)
+          .doc(userData.uid)
+          .set({
         'USER_NAME': userData.displayName,
         'Profile_image': userData.photoURL,
         'Phone_Number': userData.phoneNumber,
         'uuid': userData.uid,
         'email': userData.email,
-        'role': ''
+        'role': '',
+        'token': token
       });
+
+      //Old function to create a user.
+/*       FirbaseFunctions().addDataToCollection(Collections.USERS, {
+        'USER_NAME': userData.displayName,
+        'Profile_image': userData.photoURL,
+        'Phone_Number': userData.phoneNumber,
+        'uuid': userData.uid,
+        'email': userData.email,
+        'role': '',
+        'token': token
+      }); */
     } else {
       Fluttertoast.showToast(msg: 'Welcome Back');
     }
