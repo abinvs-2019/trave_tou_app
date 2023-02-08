@@ -20,18 +20,21 @@ mixin _$ChatEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
     required TResult Function(String message) sendMessage,
+    required TResult Function(File filePath) uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
     TResult? Function(String message)? sendMessage,
+    TResult? Function(File filePath)? uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
     TResult Function(String message)? sendMessage,
+    TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$ChatEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChatsId value) getChatOnUsersId,
     required TResult Function(_SendMsg value) sendMessage,
+    required TResult Function(_UploadToStorage value) uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetChatsId value)? getChatOnUsersId,
     TResult? Function(_SendMsg value)? sendMessage,
+    TResult? Function(_UploadToStorage value)? uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChatsId value)? getChatOnUsersId,
     TResult Function(_SendMsg value)? sendMessage,
+    TResult Function(_UploadToStorage value)? uploadImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,6 +145,7 @@ class _$_GetChatsId implements _GetChatsId {
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
     required TResult Function(String message) sendMessage,
+    required TResult Function(File filePath) uploadImage,
   }) {
     return getChatOnUsersId(userUid);
   }
@@ -148,6 +155,7 @@ class _$_GetChatsId implements _GetChatsId {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
     TResult? Function(String message)? sendMessage,
+    TResult? Function(File filePath)? uploadImage,
   }) {
     return getChatOnUsersId?.call(userUid);
   }
@@ -157,6 +165,7 @@ class _$_GetChatsId implements _GetChatsId {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
     TResult Function(String message)? sendMessage,
+    TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {
     if (getChatOnUsersId != null) {
@@ -170,6 +179,7 @@ class _$_GetChatsId implements _GetChatsId {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChatsId value) getChatOnUsersId,
     required TResult Function(_SendMsg value) sendMessage,
+    required TResult Function(_UploadToStorage value) uploadImage,
   }) {
     return getChatOnUsersId(this);
   }
@@ -179,6 +189,7 @@ class _$_GetChatsId implements _GetChatsId {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetChatsId value)? getChatOnUsersId,
     TResult? Function(_SendMsg value)? sendMessage,
+    TResult? Function(_UploadToStorage value)? uploadImage,
   }) {
     return getChatOnUsersId?.call(this);
   }
@@ -188,6 +199,7 @@ class _$_GetChatsId implements _GetChatsId {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChatsId value)? getChatOnUsersId,
     TResult Function(_SendMsg value)? sendMessage,
+    TResult Function(_UploadToStorage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (getChatOnUsersId != null) {
@@ -271,6 +283,7 @@ class _$_SendMsg implements _SendMsg {
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
     required TResult Function(String message) sendMessage,
+    required TResult Function(File filePath) uploadImage,
   }) {
     return sendMessage(message);
   }
@@ -280,6 +293,7 @@ class _$_SendMsg implements _SendMsg {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
     TResult? Function(String message)? sendMessage,
+    TResult? Function(File filePath)? uploadImage,
   }) {
     return sendMessage?.call(message);
   }
@@ -289,6 +303,7 @@ class _$_SendMsg implements _SendMsg {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
     TResult Function(String message)? sendMessage,
+    TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
@@ -302,6 +317,7 @@ class _$_SendMsg implements _SendMsg {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChatsId value) getChatOnUsersId,
     required TResult Function(_SendMsg value) sendMessage,
+    required TResult Function(_UploadToStorage value) uploadImage,
   }) {
     return sendMessage(this);
   }
@@ -311,6 +327,7 @@ class _$_SendMsg implements _SendMsg {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetChatsId value)? getChatOnUsersId,
     TResult? Function(_SendMsg value)? sendMessage,
+    TResult? Function(_UploadToStorage value)? uploadImage,
   }) {
     return sendMessage?.call(this);
   }
@@ -320,6 +337,7 @@ class _$_SendMsg implements _SendMsg {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChatsId value)? getChatOnUsersId,
     TResult Function(_SendMsg value)? sendMessage,
+    TResult Function(_UploadToStorage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
@@ -335,6 +353,147 @@ abstract class _SendMsg implements ChatEvent {
   String get message;
   @JsonKey(ignore: true)
   _$$_SendMsgCopyWith<_$_SendMsg> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UploadToStorageCopyWith<$Res> {
+  factory _$$_UploadToStorageCopyWith(
+          _$_UploadToStorage value, $Res Function(_$_UploadToStorage) then) =
+      __$$_UploadToStorageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({File filePath});
+}
+
+/// @nodoc
+class __$$_UploadToStorageCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$_UploadToStorage>
+    implements _$$_UploadToStorageCopyWith<$Res> {
+  __$$_UploadToStorageCopyWithImpl(
+      _$_UploadToStorage _value, $Res Function(_$_UploadToStorage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+  }) {
+    return _then(_$_UploadToStorage(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UploadToStorage implements _UploadToStorage {
+  const _$_UploadToStorage({required this.filePath});
+
+  @override
+  final File filePath;
+
+  @override
+  String toString() {
+    return 'ChatEvent.uploadImage(filePath: $filePath)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UploadToStorage &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filePath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UploadToStorageCopyWith<_$_UploadToStorage> get copyWith =>
+      __$$_UploadToStorageCopyWithImpl<_$_UploadToStorage>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userUid) getChatOnUsersId,
+    required TResult Function(String message) sendMessage,
+    required TResult Function(File filePath) uploadImage,
+  }) {
+    return uploadImage(filePath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userUid)? getChatOnUsersId,
+    TResult? Function(String message)? sendMessage,
+    TResult? Function(File filePath)? uploadImage,
+  }) {
+    return uploadImage?.call(filePath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userUid)? getChatOnUsersId,
+    TResult Function(String message)? sendMessage,
+    TResult Function(File filePath)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (uploadImage != null) {
+      return uploadImage(filePath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetChatsId value) getChatOnUsersId,
+    required TResult Function(_SendMsg value) sendMessage,
+    required TResult Function(_UploadToStorage value) uploadImage,
+  }) {
+    return uploadImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetChatsId value)? getChatOnUsersId,
+    TResult? Function(_SendMsg value)? sendMessage,
+    TResult? Function(_UploadToStorage value)? uploadImage,
+  }) {
+    return uploadImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetChatsId value)? getChatOnUsersId,
+    TResult Function(_SendMsg value)? sendMessage,
+    TResult Function(_UploadToStorage value)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (uploadImage != null) {
+      return uploadImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadToStorage implements ChatEvent {
+  const factory _UploadToStorage({required final File filePath}) =
+      _$_UploadToStorage;
+
+  File get filePath;
+  @JsonKey(ignore: true)
+  _$$_UploadToStorageCopyWith<_$_UploadToStorage> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

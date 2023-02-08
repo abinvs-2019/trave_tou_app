@@ -28,9 +28,9 @@ _i1.GetIt init(
     environmentFilter,
   );
   gh.factory<_i3.AuthBloc>(() => _i3.AuthBloc(gh<_i4.Auth>()));
-  gh.factory<_i5.FirestoreFunctions>(() => _i5.FirestoreFunctions());
+  gh.factory<_i5.FirbaseFunctions>(() => _i5.FirbaseFunctions());
   gh.lazySingleton<_i6.IGoogleSigning>(() => _i4.Auth());
-  gh.factory<_i7.TripBloc>(() => _i7.TripBloc(gh<_i5.FirestoreFunctions>()));
-  gh.factory<_i8.ChatBloc>(() => _i8.ChatBloc(gh<_i5.FirestoreFunctions>()));
+  gh.factory<_i7.TripBloc>(() => _i7.TripBloc(gh<_i5.FirbaseFunctions>()));
+  gh.factory<_i8.ChatBloc>(() => _i8.ChatBloc(gh<_i5.FirbaseFunctions>()));
   return getIt;
 }

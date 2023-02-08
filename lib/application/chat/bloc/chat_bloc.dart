@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,7 +17,8 @@ part 'chat_bloc.freezed.dart';
 
 @injectable
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  final FirestoreFunctions firestore;
+  final FirbaseFunctions firestore;
+
   ChatBloc(this.firestore) : super(ChatState.initial()) {
     String? chatId;
     var myUId;
@@ -36,16 +40,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         'time': DateTime.now().millisecondsSinceEpoch.toString(),
         'isSentBy': myUId
       });
-      // firestore.addDataToCollection(Collections.CHAT_DATA, );
-      // FirebaseFirestore.instance
-      //     .collection(Collections.CHAT_DATA)
-      //     .doc()
-      //     .collection(chatId!)
-      //     .add({
-      //   'msg': event.message,
-      //   'time': DateTime.now().millisecondsSinceEpoch.toString(),
-      //   'isSentBy': myUId
-      // });
+      on<_UploadToStorage>((event, emit) async {
+        var isUploaed = await firestore.firebaseStroageUpload(event.filePath);
+      });
     });
   }
 }

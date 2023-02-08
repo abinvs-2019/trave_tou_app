@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:tourist_app/core/firebase_database/firebase_database.dart';
 import 'package:tourist_app/core/firestore/I_firestore.dart';
 
 @Injectable()
 @LazySingleton(as: Firestore)
-class FirestoreFunctions implements Firestore {
+class FirbaseFunctions implements Firestore, FirebaseUpload {
   @override
   Future addDataToCollection(
       String collection, Map<String, dynamic> data) async {
@@ -44,5 +48,46 @@ class FirestoreFunctions implements Firestore {
   @override
   Future getAllDataOfCollection(String collection) async {
     await FirebaseFirestore.instance.collection(collection).get();
+  }
+
+  @override
+  Future<bool> firebaseStroageUpload(File filePath) async {
+    final file = File(filePath.path);
+
+// Create the file metadata
+    final metadata = SettableMetadata(contentType: "image/jpeg");
+
+// Create a reference to the Firebase Storage bucket
+    final storageRef = FirebaseStorage.instance.ref();
+
+// Upload file and metadata to the path 'images/mountains.jpg'
+    final uploadTask = storageRef
+        .child("images/chats/${filePath.path}.jpg")
+        .putFile(file, metadata);
+
+    bool isUploaded = false;
+// Listen for state changes, errors, and completion of the upload.
+    uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
+      switch (taskSnapshot.state) {
+        case TaskState.running:
+          final progress =
+              100.0 * (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
+          print("Upload is $progress% complete.");
+          break;
+        case TaskState.paused:
+          isUploaded = false;
+          break;
+        case TaskState.canceled:
+          isUploaded = false;
+          break;
+        case TaskState.error:
+          isUploaded = false;
+          break;
+        case TaskState.success:
+          isUploaded = true;
+          break;
+      }
+    });
+    return isUploaded;
   }
 }

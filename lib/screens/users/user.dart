@@ -45,6 +45,7 @@ class _UsersListState extends State<UsersList> {
                   return const Text('No Data...');
                 } else {
                   return ListView.builder(
+                      shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot data = snapshot.data!.docs[index];

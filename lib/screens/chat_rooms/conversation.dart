@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/chat/bloc/chat_bloc.dart';
-import 'package:tourist_app/domain/chats/chats.dart';
 
 import '../../config/firestore_collection.dart';
 
@@ -12,6 +12,8 @@ class ConverstaionRoom extends StatelessWidget {
   TextEditingController controller = TextEditingController();
   ConverstaionRoom({super.key, required this.userUUID});
   String userUUID;
+  final player = AudioPlayer();
+  var previousListLengt;
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -56,8 +58,21 @@ class ConverstaionRoom extends StatelessWidget {
                                         padding: const EdgeInsets.only(
                                             top: 10, bottom: 10),
                                         itemBuilder: (context, index) {
+
+                                          //For playing audio if the lenght of builder is changes
+                                          // Need refractor here.
+                                          if (previousListLengt >
+                                              snapshot.data!.docs.length) {
+                                            previousListLengt =
+                                                snapshot.data!.docs.length;
+                                            player.play(AssetSource(
+                                                'assets/audio/message_sent.mp3'));
+                                          }
                                           DocumentSnapshot data =
                                               snapshot.data!.docs[index];
+                                          DateTime date = DateTime
+                                              .fromMillisecondsSinceEpoch(
+                                                  data['time']);
                                           return Container(
                                             padding: const EdgeInsets.only(
                                                 left: 14,
@@ -96,10 +111,15 @@ class ConverstaionRoom extends StatelessWidget {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 15,
                                                         vertical: 5),
-                                                child: Text(
-                                                  data['msg'],
-                                                  style: const TextStyle(
-                                                      fontSize: 12),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      data['msg'],
+                                                      style: const TextStyle(
+                                                          fontSize: 12),
+                                                    ),
+                                                    Text(date.toString())
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -123,19 +143,16 @@ class ConverstaionRoom extends StatelessWidget {
         child: Row(
           children: <Widget>[
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                // Nedd to add fiel picking for sending images.
+              },
               child: Container(
                 height: 30,
                 width: 30,
                 decoration: BoxDecoration(
-                  color: Colors.teal,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 20,
-                ),
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.circular(30)),
+                child: const Icon(Icons.add, color: Colors.white, size: 20),
               ),
             ),
             const SizedBox(width: 15),
@@ -152,6 +169,7 @@ class ConverstaionRoom extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: () {
                   if (controller.text.isNotEmpty) {
+                    player.play(AssetSource('assets/audio/message_sent.mp3'));
                     context
                         .read<ChatBloc>()
                         .add(ChatEvent.sendMessage(message: controller.text));

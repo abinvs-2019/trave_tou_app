@@ -70,7 +70,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
         .where('email', isEqualTo: userData.email!)
         .get();
     if (isEsxistEmail.docs.isEmpty) {
-      FirestoreFunctions().addDataToCollection(Collections.USERS, {
+      FirbaseFunctions().addDataToCollection(Collections.USERS, {
         'USER_NAME': userData.displayName,
         'Profile_image': userData.photoURL,
         'Phone_Number': userData.phoneNumber,
