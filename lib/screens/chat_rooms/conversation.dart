@@ -189,3 +189,16 @@ class ConverstaionRoom extends StatelessWidget {
     );
   }
 }
+
+enum FileType { img, video, audio }
+
+class CustomFileUploadWidget extends StatelessWidget {
+  const CustomFileUploadWidget({super.key, required FileType type});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(shape: BoxShape.circle),
+    );
+  }
+}
