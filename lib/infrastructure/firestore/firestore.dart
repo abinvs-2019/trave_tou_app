@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
@@ -56,7 +57,7 @@ class FirbaseFunctions implements Firestore, FirebaseUpload {
   }
 
   @override
-  Future<bool> firebaseStroageUpload(File filePath) async {
+  Future<Either<String, String>> firebaseStroageUpload(File filePath) async {
     final file = File(filePath.path);
 
 // Create the file metadata
@@ -70,7 +71,7 @@ class FirbaseFunctions implements Firestore, FirebaseUpload {
         .child("images/chats/${filePath.path}.jpg")
         .putFile(file, metadata);
 
-    bool isUploaded = false;
+    String isUploaded = '';
 // Listen for state changes, errors, and completion of the upload.
     uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
       switch (taskSnapshot.state) {
@@ -80,20 +81,25 @@ class FirbaseFunctions implements Firestore, FirebaseUpload {
           print("Upload is $progress% complete.");
           break;
         case TaskState.paused:
-          isUploaded = false;
+          isUploaded = '';
           break;
         case TaskState.canceled:
-          isUploaded = false;
+          isUploaded = '';
           break;
         case TaskState.error:
-          isUploaded = false;
+          isUploaded = '';
           break;
         case TaskState.success:
-          isUploaded = true;
+          isUploaded = '';
           break;
       }
     });
-    return isUploaded;
+    if (isUploaded == '') {
+      return const Right('Error while Uploading');
+    } else {
+      return Left(isUploaded);
+    }
+  
   }
 
   @override

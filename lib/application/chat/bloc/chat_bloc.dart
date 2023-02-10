@@ -9,6 +9,7 @@ import 'package:tourist_app/config/constants.dart';
 import 'package:tourist_app/config/firestore_collection.dart';
 import 'package:tourist_app/core/firebase_messaging/custom_send_push.dart';
 import 'package:tourist_app/infrastructure/firestore/firestore.dart';
+import 'package:tourist_app/screens/chat_rooms/conversation.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -37,7 +38,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           .add({
         'msg': event.message,
         'time': DateTime.now().millisecondsSinceEpoch.toString(),
-        'isSentBy': myUId
+        'isSentBy': myUId,
+        'type': event.fileType
       });
       // CustomPushApi.sendCustomPush(token: event.token, body: event.message, title: 'New Message recieved');
     });

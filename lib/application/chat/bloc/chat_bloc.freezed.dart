@@ -19,21 +19,24 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message, String token) sendMessage,
+    required TResult Function(String message, String token, FileType fileType)
+        sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message, String token)? sendMessage,
+    TResult? Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message, String token)? sendMessage,
+    TResult Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) =>
@@ -144,7 +147,8 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message, String token) sendMessage,
+    required TResult Function(String message, String token, FileType fileType)
+        sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) {
     return getChatOnUsersId(userUid);
@@ -154,7 +158,8 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message, String token)? sendMessage,
+    TResult? Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) {
     return getChatOnUsersId?.call(userUid);
@@ -164,7 +169,8 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message, String token)? sendMessage,
+    TResult Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {
@@ -224,7 +230,7 @@ abstract class _$$_SendMsgCopyWith<$Res> {
           _$_SendMsg value, $Res Function(_$_SendMsg) then) =
       __$$_SendMsgCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, String token});
+  $Res call({String message, String token, FileType fileType});
 }
 
 /// @nodoc
@@ -239,6 +245,7 @@ class __$$_SendMsgCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
     Object? token = null,
+    Object? fileType = null,
   }) {
     return _then(_$_SendMsg(
       message: null == message
@@ -249,6 +256,10 @@ class __$$_SendMsgCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      fileType: null == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as FileType,
     ));
   }
 }
@@ -256,16 +267,19 @@ class __$$_SendMsgCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SendMsg implements _SendMsg {
-  const _$_SendMsg({required this.message, required this.token});
+  const _$_SendMsg(
+      {required this.message, required this.token, required this.fileType});
 
   @override
   final String message;
   @override
   final String token;
+  @override
+  final FileType fileType;
 
   @override
   String toString() {
-    return 'ChatEvent.sendMessage(message: $message, token: $token)';
+    return 'ChatEvent.sendMessage(message: $message, token: $token, fileType: $fileType)';
   }
 
   @override
@@ -274,11 +288,13 @@ class _$_SendMsg implements _SendMsg {
         (other.runtimeType == runtimeType &&
             other is _$_SendMsg &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.fileType, fileType) ||
+                other.fileType == fileType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, token);
+  int get hashCode => Object.hash(runtimeType, message, token, fileType);
 
   @JsonKey(ignore: true)
   @override
@@ -290,32 +306,35 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message, String token) sendMessage,
+    required TResult Function(String message, String token, FileType fileType)
+        sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) {
-    return sendMessage(message, token);
+    return sendMessage(message, token, fileType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message, String token)? sendMessage,
+    TResult? Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) {
-    return sendMessage?.call(message, token);
+    return sendMessage?.call(message, token, fileType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message, String token)? sendMessage,
+    TResult Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
-      return sendMessage(message, token);
+      return sendMessage(message, token, fileType);
     }
     return orElse();
   }
@@ -358,10 +377,12 @@ class _$_SendMsg implements _SendMsg {
 abstract class _SendMsg implements ChatEvent {
   const factory _SendMsg(
       {required final String message,
-      required final String token}) = _$_SendMsg;
+      required final String token,
+      required final FileType fileType}) = _$_SendMsg;
 
   String get message;
   String get token;
+  FileType get fileType;
   @JsonKey(ignore: true)
   _$$_SendMsgCopyWith<_$_SendMsg> get copyWith =>
       throw _privateConstructorUsedError;
@@ -433,7 +454,8 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
-    required TResult Function(String message, String token) sendMessage,
+    required TResult Function(String message, String token, FileType fileType)
+        sendMessage,
     required TResult Function(File filePath) uploadImage,
   }) {
     return uploadImage(filePath);
@@ -443,7 +465,8 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
-    TResult? Function(String message, String token)? sendMessage,
+    TResult? Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult? Function(File filePath)? uploadImage,
   }) {
     return uploadImage?.call(filePath);
@@ -453,7 +476,8 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
-    TResult Function(String message, String token)? sendMessage,
+    TResult Function(String message, String token, FileType fileType)?
+        sendMessage,
     TResult Function(File filePath)? uploadImage,
     required TResult orElse(),
   }) {

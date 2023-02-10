@@ -13,7 +13,6 @@ class ConverstaionRoom extends StatelessWidget {
   ConverstaionRoom({super.key, required this.userUUID, required this.token});
   String userUUID, token;
   final player = AudioPlayer();
-  var previousListLengt;
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -142,9 +141,7 @@ class ConverstaionRoom extends StatelessWidget {
         child: Row(
           children: <Widget>[
             GestureDetector(
-              onTap: () {
-                // Nedd to add fiel picking for sending images.
-              },
+              onTap: () {},
               child: Container(
                 height: 30,
                 width: 30,
@@ -170,7 +167,9 @@ class ConverstaionRoom extends StatelessWidget {
                   if (controller.text.isNotEmpty) {
                     player.play(AssetSource('audio/message_sent.mp3'));
                     context.read<ChatBloc>().add(ChatEvent.sendMessage(
-                        message: controller.text, token: token));
+                        fileType: FileType.chat,
+                        message: controller.text,
+                        token: token));
                     controller.clear();
                   }
                 },
@@ -190,15 +189,32 @@ class ConverstaionRoom extends StatelessWidget {
   }
 }
 
-enum FileType { img, video, audio }
+enum FileType { img, video, audio, chat }
 
 class CustomFileUploadWidget extends StatelessWidget {
-  const CustomFileUploadWidget({super.key, required FileType type});
-
+  CustomFileUploadWidget(
+      {super.key, required FileType type, required this.imagePath});
+  File imagePath;
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(shape: BoxShape.circle),
+      width: MediaQuery.of(context).size.width * .3,
+      decoration: const BoxDecoration(shape: BoxShape.rectangle),
+      child: Image.file(imagePath),
+    );
+  }
+}
+
+class CustomFileDownloadWidget extends StatelessWidget {
+  CustomFileDownloadWidget(
+      {super.key, required FileType type, required this.imagePathUrl});
+  String imagePathUrl;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * .3,
+      decoration: const BoxDecoration(shape: BoxShape.rectangle),
+      child: Image.network(imagePathUrl),
     );
   }
 }
