@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/chat/bloc/chat_bloc.dart';
+import 'package:tourist_app/application/file_transfer_firebase/file_transfer_bloc.dart';
 
 import '../../config/firestore_collection.dart';
 
@@ -141,7 +142,11 @@ class ConverstaionRoom extends StatelessWidget {
         child: Row(
           children: <Widget>[
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context
+                    .read<FileTransferBloc>()
+                    .add(const FileTransferEvent.upload());
+              },
               child: Container(
                 height: 30,
                 width: 30,

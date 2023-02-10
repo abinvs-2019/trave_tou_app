@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'upload_bloc.dart';
+part of 'file_transfer_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,23 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UploadEvent {
-  File get file => throw _privateConstructorUsedError;
+mixin _$FileTransferEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(File file) upload,
+    required TResult Function() upload,
     required TResult Function(File file) download,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(File file)? upload,
+    TResult? Function()? upload,
     TResult? Function(File file)? download,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(File file)? upload,
+    TResult Function()? upload,
     TResult Function(File file)? download,
     required TResult orElse(),
   }) =>
@@ -55,132 +54,86 @@ mixin _$UploadEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UploadEventCopyWith<UploadEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UploadEventCopyWith<$Res> {
-  factory $UploadEventCopyWith(
-          UploadEvent value, $Res Function(UploadEvent) then) =
-      _$UploadEventCopyWithImpl<$Res, UploadEvent>;
-  @useResult
-  $Res call({File file});
+abstract class $FileTransferEventCopyWith<$Res> {
+  factory $FileTransferEventCopyWith(
+          FileTransferEvent value, $Res Function(FileTransferEvent) then) =
+      _$FileTransferEventCopyWithImpl<$Res, FileTransferEvent>;
 }
 
 /// @nodoc
-class _$UploadEventCopyWithImpl<$Res, $Val extends UploadEvent>
-    implements $UploadEventCopyWith<$Res> {
-  _$UploadEventCopyWithImpl(this._value, this._then);
+class _$FileTransferEventCopyWithImpl<$Res, $Val extends FileTransferEvent>
+    implements $FileTransferEventCopyWith<$Res> {
+  _$FileTransferEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? file = null,
-  }) {
-    return _then(_value.copyWith(
-      file: null == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as File,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_UploadCopyWith<$Res> implements $UploadEventCopyWith<$Res> {
+abstract class _$$_UploadCopyWith<$Res> {
   factory _$$_UploadCopyWith(_$_Upload value, $Res Function(_$_Upload) then) =
       __$$_UploadCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({File file});
 }
 
 /// @nodoc
 class __$$_UploadCopyWithImpl<$Res>
-    extends _$UploadEventCopyWithImpl<$Res, _$_Upload>
+    extends _$FileTransferEventCopyWithImpl<$Res, _$_Upload>
     implements _$$_UploadCopyWith<$Res> {
   __$$_UploadCopyWithImpl(_$_Upload _value, $Res Function(_$_Upload) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? file = null,
-  }) {
-    return _then(_$_Upload(
-      file: null == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as File,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Upload implements _Upload {
-  const _$_Upload({required this.file});
-
-  @override
-  final File file;
+  const _$_Upload();
 
   @override
   String toString() {
-    return 'UploadEvent.upload(file: $file)';
+    return 'FileTransferEvent.upload()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Upload &&
-            (identical(other.file, file) || other.file == file));
+        (other.runtimeType == runtimeType && other is _$_Upload);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, file);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UploadCopyWith<_$_Upload> get copyWith =>
-      __$$_UploadCopyWithImpl<_$_Upload>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(File file) upload,
+    required TResult Function() upload,
     required TResult Function(File file) download,
   }) {
-    return upload(file);
+    return upload();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(File file)? upload,
+    TResult? Function()? upload,
     TResult? Function(File file)? download,
   }) {
-    return upload?.call(file);
+    return upload?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(File file)? upload,
+    TResult Function()? upload,
     TResult Function(File file)? download,
     required TResult orElse(),
   }) {
     if (upload != null) {
-      return upload(file);
+      return upload();
     }
     return orElse();
   }
@@ -217,31 +170,22 @@ class _$_Upload implements _Upload {
   }
 }
 
-abstract class _Upload implements UploadEvent {
-  const factory _Upload({required final File file}) = _$_Upload;
-
-  @override
-  File get file;
-  @override
-  @JsonKey(ignore: true)
-  _$$_UploadCopyWith<_$_Upload> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Upload implements FileTransferEvent {
+  const factory _Upload() = _$_Upload;
 }
 
 /// @nodoc
-abstract class _$$_DownloadCopyWith<$Res>
-    implements $UploadEventCopyWith<$Res> {
+abstract class _$$_DownloadCopyWith<$Res> {
   factory _$$_DownloadCopyWith(
           _$_Download value, $Res Function(_$_Download) then) =
       __$$_DownloadCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({File file});
 }
 
 /// @nodoc
 class __$$_DownloadCopyWithImpl<$Res>
-    extends _$UploadEventCopyWithImpl<$Res, _$_Download>
+    extends _$FileTransferEventCopyWithImpl<$Res, _$_Download>
     implements _$$_DownloadCopyWith<$Res> {
   __$$_DownloadCopyWithImpl(
       _$_Download _value, $Res Function(_$_Download) _then)
@@ -271,7 +215,7 @@ class _$_Download implements _Download {
 
   @override
   String toString() {
-    return 'UploadEvent.download(file: $file)';
+    return 'FileTransferEvent.download(file: $file)';
   }
 
   @override
@@ -294,7 +238,7 @@ class _$_Download implements _Download {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(File file) upload,
+    required TResult Function() upload,
     required TResult Function(File file) download,
   }) {
     return download(file);
@@ -303,7 +247,7 @@ class _$_Download implements _Download {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(File file)? upload,
+    TResult? Function()? upload,
     TResult? Function(File file)? download,
   }) {
     return download?.call(file);
@@ -312,7 +256,7 @@ class _$_Download implements _Download {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(File file)? upload,
+    TResult Function()? upload,
     TResult Function(File file)? download,
     required TResult orElse(),
   }) {
@@ -354,41 +298,39 @@ class _$_Download implements _Download {
   }
 }
 
-abstract class _Download implements UploadEvent {
+abstract class _Download implements FileTransferEvent {
   const factory _Download({required final File file}) = _$_Download;
 
-  @override
   File get file;
-  @override
   @JsonKey(ignore: true)
   _$$_DownloadCopyWith<_$_Download> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$UploadState {
+mixin _$FileTransferState {
   bool get isTransferring => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   bool get isCompleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UploadStateCopyWith<UploadState> get copyWith =>
+  $FileTransferStateCopyWith<FileTransferState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UploadStateCopyWith<$Res> {
-  factory $UploadStateCopyWith(
-          UploadState value, $Res Function(UploadState) then) =
-      _$UploadStateCopyWithImpl<$Res, UploadState>;
+abstract class $FileTransferStateCopyWith<$Res> {
+  factory $FileTransferStateCopyWith(
+          FileTransferState value, $Res Function(FileTransferState) then) =
+      _$FileTransferStateCopyWithImpl<$Res, FileTransferState>;
   @useResult
   $Res call({bool isTransferring, bool isError, bool isCompleted});
 }
 
 /// @nodoc
-class _$UploadStateCopyWithImpl<$Res, $Val extends UploadState>
-    implements $UploadStateCopyWith<$Res> {
-  _$UploadStateCopyWithImpl(this._value, this._then);
+class _$FileTransferStateCopyWithImpl<$Res, $Val extends FileTransferState>
+    implements $FileTransferStateCopyWith<$Res> {
+  _$FileTransferStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -421,7 +363,7 @@ class _$UploadStateCopyWithImpl<$Res, $Val extends UploadState>
 
 /// @nodoc
 abstract class _$$_UploadStateCopyWith<$Res>
-    implements $UploadStateCopyWith<$Res> {
+    implements $FileTransferStateCopyWith<$Res> {
   factory _$$_UploadStateCopyWith(
           _$_UploadState value, $Res Function(_$_UploadState) then) =
       __$$_UploadStateCopyWithImpl<$Res>;
@@ -432,7 +374,7 @@ abstract class _$$_UploadStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_UploadStateCopyWithImpl<$Res>
-    extends _$UploadStateCopyWithImpl<$Res, _$_UploadState>
+    extends _$FileTransferStateCopyWithImpl<$Res, _$_UploadState>
     implements _$$_UploadStateCopyWith<$Res> {
   __$$_UploadStateCopyWithImpl(
       _$_UploadState _value, $Res Function(_$_UploadState) _then)
@@ -479,7 +421,7 @@ class _$_UploadState implements _UploadState {
 
   @override
   String toString() {
-    return 'UploadState(isTransferring: $isTransferring, isError: $isError, isCompleted: $isCompleted)';
+    return 'FileTransferState(isTransferring: $isTransferring, isError: $isError, isCompleted: $isCompleted)';
   }
 
   @override
@@ -505,7 +447,7 @@ class _$_UploadState implements _UploadState {
       __$$_UploadStateCopyWithImpl<_$_UploadState>(this, _$identity);
 }
 
-abstract class _UploadState implements UploadState {
+abstract class _UploadState implements FileTransferState {
   factory _UploadState(
       {required final bool isTransferring,
       required final bool isError,

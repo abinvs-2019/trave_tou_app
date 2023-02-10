@@ -22,13 +22,22 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc(this.firestore) : super(ChatState.initial()) {
     String? chatId;
     var myUId;
+    var eventUid;
     on<_GetChatsId>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       SharedPreferences preferences = await SharedPreferences.getInstance();
       myUId = preferences.getString(USER_IDENTITY_KEY);
       print('my uuid id: $myUId');
+      eventUid = eventUid;
       chatId = '${myUId}${event.userUid}';
       emit(state.copyWith(chatId: chatId, isLoading: false, myId: myUId));
+    });
+    on<_CreateChatRoom>((event, emit) {
+      FirebaseFirestore.instance.collection("ChatRoom").doc(chatId).set({
+        "users": [eventUid, myUId]
+      }).catchError((e) {
+        print(e.toString());
+      });
     });
     on<_SendMsg>((event, emit) {
       FirebaseFirestore.instance

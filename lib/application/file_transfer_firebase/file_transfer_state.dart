@@ -1,13 +1,13 @@
-part of 'upload_bloc.dart';
+part of 'file_transfer_bloc.dart';
 
 @freezed
-class UploadState with _$UploadState {
-  factory UploadState(
+class FileTransferState with _$FileTransferState {
+  factory FileTransferState(
       {required bool isTransferring,
       required bool isError,
       required bool isCompleted}) = _UploadState;
-  factory UploadState.initial() {
-    return UploadState(
+  factory FileTransferState.initial() {
+    return FileTransferState(
         isTransferring: false, isError: false, isCompleted: false);
   }
 }

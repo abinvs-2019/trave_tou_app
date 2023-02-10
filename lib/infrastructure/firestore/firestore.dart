@@ -90,16 +90,17 @@ class FirbaseFunctions implements Firestore, FirebaseUpload {
           isUploaded = '';
           break;
         case TaskState.success:
-          isUploaded = '';
           break;
       }
     });
+    // uploadTask.snapshotEvents.
+    isUploaded = await storageRef.getDownloadURL();
+    print(isUploaded);
     if (isUploaded == '') {
       return const Right('Error while Uploading');
     } else {
       return Left(isUploaded);
     }
-  
   }
 
   @override

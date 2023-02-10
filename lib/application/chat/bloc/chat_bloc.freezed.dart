@@ -19,6 +19,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
+    required TResult Function(String uid) createChatRoom,
     required TResult Function(String message, String token, FileType fileType)
         sendMessage,
     required TResult Function(File filePath) uploadImage,
@@ -27,6 +28,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
+    TResult? Function(String uid)? createChatRoom,
     TResult? Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult? Function(File filePath)? uploadImage,
@@ -35,6 +37,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
+    TResult Function(String uid)? createChatRoom,
     TResult Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult Function(File filePath)? uploadImage,
@@ -44,6 +47,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChatsId value) getChatOnUsersId,
+    required TResult Function(_CreateChatRoom value) createChatRoom,
     required TResult Function(_SendMsg value) sendMessage,
     required TResult Function(_UploadToStorage value) uploadImage,
   }) =>
@@ -51,6 +55,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetChatsId value)? getChatOnUsersId,
+    TResult? Function(_CreateChatRoom value)? createChatRoom,
     TResult? Function(_SendMsg value)? sendMessage,
     TResult? Function(_UploadToStorage value)? uploadImage,
   }) =>
@@ -58,6 +63,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChatsId value)? getChatOnUsersId,
+    TResult Function(_CreateChatRoom value)? createChatRoom,
     TResult Function(_SendMsg value)? sendMessage,
     TResult Function(_UploadToStorage value)? uploadImage,
     required TResult orElse(),
@@ -147,6 +153,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
+    required TResult Function(String uid) createChatRoom,
     required TResult Function(String message, String token, FileType fileType)
         sendMessage,
     required TResult Function(File filePath) uploadImage,
@@ -158,6 +165,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
+    TResult? Function(String uid)? createChatRoom,
     TResult? Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult? Function(File filePath)? uploadImage,
@@ -169,6 +177,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
+    TResult Function(String uid)? createChatRoom,
     TResult Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult Function(File filePath)? uploadImage,
@@ -184,6 +193,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChatsId value) getChatOnUsersId,
+    required TResult Function(_CreateChatRoom value) createChatRoom,
     required TResult Function(_SendMsg value) sendMessage,
     required TResult Function(_UploadToStorage value) uploadImage,
   }) {
@@ -194,6 +204,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetChatsId value)? getChatOnUsersId,
+    TResult? Function(_CreateChatRoom value)? createChatRoom,
     TResult? Function(_SendMsg value)? sendMessage,
     TResult? Function(_UploadToStorage value)? uploadImage,
   }) {
@@ -204,6 +215,7 @@ class _$_GetChatsId implements _GetChatsId {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChatsId value)? getChatOnUsersId,
+    TResult Function(_CreateChatRoom value)? createChatRoom,
     TResult Function(_SendMsg value)? sendMessage,
     TResult Function(_UploadToStorage value)? uploadImage,
     required TResult orElse(),
@@ -221,6 +233,155 @@ abstract class _GetChatsId implements ChatEvent {
   String get userUid;
   @JsonKey(ignore: true)
   _$$_GetChatsIdCopyWith<_$_GetChatsId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CreateChatRoomCopyWith<$Res> {
+  factory _$$_CreateChatRoomCopyWith(
+          _$_CreateChatRoom value, $Res Function(_$_CreateChatRoom) then) =
+      __$$_CreateChatRoomCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String uid});
+}
+
+/// @nodoc
+class __$$_CreateChatRoomCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$_CreateChatRoom>
+    implements _$$_CreateChatRoomCopyWith<$Res> {
+  __$$_CreateChatRoomCopyWithImpl(
+      _$_CreateChatRoom _value, $Res Function(_$_CreateChatRoom) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? uid = null,
+  }) {
+    return _then(_$_CreateChatRoom(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CreateChatRoom implements _CreateChatRoom {
+  const _$_CreateChatRoom({required this.uid});
+
+  @override
+  final String uid;
+
+  @override
+  String toString() {
+    return 'ChatEvent.createChatRoom(uid: $uid)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateChatRoom &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, uid);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CreateChatRoomCopyWith<_$_CreateChatRoom> get copyWith =>
+      __$$_CreateChatRoomCopyWithImpl<_$_CreateChatRoom>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userUid) getChatOnUsersId,
+    required TResult Function(String uid) createChatRoom,
+    required TResult Function(String message, String token, FileType fileType)
+        sendMessage,
+    required TResult Function(File filePath) uploadImage,
+  }) {
+    return createChatRoom(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userUid)? getChatOnUsersId,
+    TResult? Function(String uid)? createChatRoom,
+    TResult? Function(String message, String token, FileType fileType)?
+        sendMessage,
+    TResult? Function(File filePath)? uploadImage,
+  }) {
+    return createChatRoom?.call(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userUid)? getChatOnUsersId,
+    TResult Function(String uid)? createChatRoom,
+    TResult Function(String message, String token, FileType fileType)?
+        sendMessage,
+    TResult Function(File filePath)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (createChatRoom != null) {
+      return createChatRoom(uid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetChatsId value) getChatOnUsersId,
+    required TResult Function(_CreateChatRoom value) createChatRoom,
+    required TResult Function(_SendMsg value) sendMessage,
+    required TResult Function(_UploadToStorage value) uploadImage,
+  }) {
+    return createChatRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetChatsId value)? getChatOnUsersId,
+    TResult? Function(_CreateChatRoom value)? createChatRoom,
+    TResult? Function(_SendMsg value)? sendMessage,
+    TResult? Function(_UploadToStorage value)? uploadImage,
+  }) {
+    return createChatRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetChatsId value)? getChatOnUsersId,
+    TResult Function(_CreateChatRoom value)? createChatRoom,
+    TResult Function(_SendMsg value)? sendMessage,
+    TResult Function(_UploadToStorage value)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (createChatRoom != null) {
+      return createChatRoom(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateChatRoom implements ChatEvent {
+  const factory _CreateChatRoom({required final String uid}) =
+      _$_CreateChatRoom;
+
+  String get uid;
+  @JsonKey(ignore: true)
+  _$$_CreateChatRoomCopyWith<_$_CreateChatRoom> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -306,6 +467,7 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
+    required TResult Function(String uid) createChatRoom,
     required TResult Function(String message, String token, FileType fileType)
         sendMessage,
     required TResult Function(File filePath) uploadImage,
@@ -317,6 +479,7 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
+    TResult? Function(String uid)? createChatRoom,
     TResult? Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult? Function(File filePath)? uploadImage,
@@ -328,6 +491,7 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
+    TResult Function(String uid)? createChatRoom,
     TResult Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult Function(File filePath)? uploadImage,
@@ -343,6 +507,7 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChatsId value) getChatOnUsersId,
+    required TResult Function(_CreateChatRoom value) createChatRoom,
     required TResult Function(_SendMsg value) sendMessage,
     required TResult Function(_UploadToStorage value) uploadImage,
   }) {
@@ -353,6 +518,7 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetChatsId value)? getChatOnUsersId,
+    TResult? Function(_CreateChatRoom value)? createChatRoom,
     TResult? Function(_SendMsg value)? sendMessage,
     TResult? Function(_UploadToStorage value)? uploadImage,
   }) {
@@ -363,6 +529,7 @@ class _$_SendMsg implements _SendMsg {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChatsId value)? getChatOnUsersId,
+    TResult Function(_CreateChatRoom value)? createChatRoom,
     TResult Function(_SendMsg value)? sendMessage,
     TResult Function(_UploadToStorage value)? uploadImage,
     required TResult orElse(),
@@ -454,6 +621,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userUid) getChatOnUsersId,
+    required TResult Function(String uid) createChatRoom,
     required TResult Function(String message, String token, FileType fileType)
         sendMessage,
     required TResult Function(File filePath) uploadImage,
@@ -465,6 +633,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userUid)? getChatOnUsersId,
+    TResult? Function(String uid)? createChatRoom,
     TResult? Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult? Function(File filePath)? uploadImage,
@@ -476,6 +645,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userUid)? getChatOnUsersId,
+    TResult Function(String uid)? createChatRoom,
     TResult Function(String message, String token, FileType fileType)?
         sendMessage,
     TResult Function(File filePath)? uploadImage,
@@ -491,6 +661,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChatsId value) getChatOnUsersId,
+    required TResult Function(_CreateChatRoom value) createChatRoom,
     required TResult Function(_SendMsg value) sendMessage,
     required TResult Function(_UploadToStorage value) uploadImage,
   }) {
@@ -501,6 +672,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetChatsId value)? getChatOnUsersId,
+    TResult? Function(_CreateChatRoom value)? createChatRoom,
     TResult? Function(_SendMsg value)? sendMessage,
     TResult? Function(_UploadToStorage value)? uploadImage,
   }) {
@@ -511,6 +683,7 @@ class _$_UploadToStorage implements _UploadToStorage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChatsId value)? getChatOnUsersId,
+    TResult Function(_CreateChatRoom value)? createChatRoom,
     TResult Function(_SendMsg value)? sendMessage,
     TResult Function(_UploadToStorage value)? uploadImage,
     required TResult orElse(),
