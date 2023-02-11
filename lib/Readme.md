@@ -3,3 +3,4 @@
 // And call the widget inside the cat widget and manage according to file type.
 
 // Enable push notification service for chat and trip add.
+// Also need to intergrate the device info package to get more details about the logging device.
