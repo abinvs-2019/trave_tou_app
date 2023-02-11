@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
+import 'package:tourist_app/screens/chat_rooms/conversation.dart';
 import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 import '../../config/firestore_collection.dart';
@@ -44,6 +45,7 @@ class _UsersListState extends State<UsersList> {
                   return const Text('No Data...');
                 } else {
                   return ListView.builder(
+                      shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot data = snapshot.data!.docs[index];
@@ -65,9 +67,39 @@ class _UsersListState extends State<UsersList> {
                                   return data['role'] == null ||
                                           data['role'] == ''
                                       ? IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ConverstaionRoom(
+                                                          userUUID:
+                                                              data['uuid'],
+                                                          token: data['token'],
+                                                        )));
+                                          },
                                           icon: const Icon(Icons.message))
-                                      : Text(data['role']);
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(data['role']),
+                                            IconButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ConverstaionRoom(
+                                                                userUUID: data[
+                                                                    'uuid'],
+                                                                token: data[
+                                                                    'token'],
+                                                              )));
+                                                },
+                                                icon: const Icon(Icons.message))
+                                          ],
+                                        );
                                 }
                                 return const SizedBox();
                               },
@@ -75,11 +107,6 @@ class _UsersListState extends State<UsersList> {
                       });
                 }
               }),
-      persistentFooterButtons: [
-        Container(
-          child: ElevatedButton(onPressed: () {}, child: const Text('Next')),
-        )
-      ],
     );
   }
 }

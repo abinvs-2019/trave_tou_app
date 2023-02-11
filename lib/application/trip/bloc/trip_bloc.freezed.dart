@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'trip_bloc.dart';
 
@@ -24,7 +24,7 @@ mixin _$TripEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(TripCreateModel? model)? createTrip,
+    TResult? Function(TripCreateModel? model)? createTrip,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +40,7 @@ mixin _$TripEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CreateTrip value)? createTrip,
+    TResult? Function(_CreateTrip value)? createTrip,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,40 +58,45 @@ mixin _$TripEvent {
 /// @nodoc
 abstract class $TripEventCopyWith<$Res> {
   factory $TripEventCopyWith(TripEvent value, $Res Function(TripEvent) then) =
-      _$TripEventCopyWithImpl<$Res>;
+      _$TripEventCopyWithImpl<$Res, TripEvent>;
+  @useResult
   $Res call({TripCreateModel? model});
 
   $TripCreateModelCopyWith<$Res>? get model;
 }
 
 /// @nodoc
-class _$TripEventCopyWithImpl<$Res> implements $TripEventCopyWith<$Res> {
+class _$TripEventCopyWithImpl<$Res, $Val extends TripEvent>
+    implements $TripEventCopyWith<$Res> {
   _$TripEventCopyWithImpl(this._value, this._then);
 
-  final TripEvent _value;
   // ignore: unused_field
-  final $Res Function(TripEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? model = freezed,
   }) {
     return _then(_value.copyWith(
-      model: model == freezed
+      model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as TripCreateModel?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TripCreateModelCopyWith<$Res>? get model {
     if (_value.model == null) {
       return null;
     }
 
     return $TripCreateModelCopyWith<$Res>(_value.model!, (value) {
-      return _then(_value.copyWith(model: value));
+      return _then(_value.copyWith(model: value) as $Val);
     });
   }
 }
@@ -103,6 +108,7 @@ abstract class _$$_CreateTripCopyWith<$Res>
           _$_CreateTrip value, $Res Function(_$_CreateTrip) then) =
       __$$_CreateTripCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({TripCreateModel? model});
 
   @override
@@ -110,21 +116,20 @@ abstract class _$$_CreateTripCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CreateTripCopyWithImpl<$Res> extends _$TripEventCopyWithImpl<$Res>
+class __$$_CreateTripCopyWithImpl<$Res>
+    extends _$TripEventCopyWithImpl<$Res, _$_CreateTrip>
     implements _$$_CreateTripCopyWith<$Res> {
   __$$_CreateTripCopyWithImpl(
       _$_CreateTrip _value, $Res Function(_$_CreateTrip) _then)
-      : super(_value, (v) => _then(v as _$_CreateTrip));
+      : super(_value, _then);
 
-  @override
-  _$_CreateTrip get _value => super._value as _$_CreateTrip;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? model = freezed,
   }) {
     return _then(_$_CreateTrip(
-      model: model == freezed
+      model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as TripCreateModel?,
@@ -150,15 +155,15 @@ class _$_CreateTrip implements _CreateTrip {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CreateTrip &&
-            const DeepCollectionEquality().equals(other.model, model));
+            (identical(other.model, model) || other.model == model));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(model));
+  int get hashCode => Object.hash(runtimeType, model);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CreateTripCopyWith<_$_CreateTrip> get copyWith =>
       __$$_CreateTripCopyWithImpl<_$_CreateTrip>(this, _$identity);
 
@@ -173,7 +178,7 @@ class _$_CreateTrip implements _CreateTrip {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(TripCreateModel? model)? createTrip,
+    TResult? Function(TripCreateModel? model)? createTrip,
   }) {
     return createTrip?.call(model);
   }
@@ -201,7 +206,7 @@ class _$_CreateTrip implements _CreateTrip {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CreateTrip value)? createTrip,
+    TResult? Function(_CreateTrip value)? createTrip,
   }) {
     return createTrip?.call(this);
   }
@@ -243,33 +248,37 @@ mixin _$TripState {
 /// @nodoc
 abstract class $TripStateCopyWith<$Res> {
   factory $TripStateCopyWith(TripState value, $Res Function(TripState) then) =
-      _$TripStateCopyWithImpl<$Res>;
+      _$TripStateCopyWithImpl<$Res, TripState>;
+  @useResult
   $Res call({bool isLoading, bool? isAdded});
 }
 
 /// @nodoc
-class _$TripStateCopyWithImpl<$Res> implements $TripStateCopyWith<$Res> {
+class _$TripStateCopyWithImpl<$Res, $Val extends TripState>
+    implements $TripStateCopyWith<$Res> {
   _$TripStateCopyWithImpl(this._value, this._then);
 
-  final TripState _value;
   // ignore: unused_field
-  final $Res Function(TripState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = freezed,
+    Object? isLoading = null,
     Object? isAdded = freezed,
   }) {
     return _then(_value.copyWith(
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAdded: isAdded == freezed
+      isAdded: freezed == isAdded
           ? _value.isAdded
           : isAdded // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -279,30 +288,30 @@ abstract class _$$_TripStateCopyWith<$Res> implements $TripStateCopyWith<$Res> {
           _$_TripState value, $Res Function(_$_TripState) then) =
       __$$_TripStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({bool isLoading, bool? isAdded});
 }
 
 /// @nodoc
-class __$$_TripStateCopyWithImpl<$Res> extends _$TripStateCopyWithImpl<$Res>
+class __$$_TripStateCopyWithImpl<$Res>
+    extends _$TripStateCopyWithImpl<$Res, _$_TripState>
     implements _$$_TripStateCopyWith<$Res> {
   __$$_TripStateCopyWithImpl(
       _$_TripState _value, $Res Function(_$_TripState) _then)
-      : super(_value, (v) => _then(v as _$_TripState));
+      : super(_value, _then);
 
-  @override
-  _$_TripState get _value => super._value as _$_TripState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = freezed,
+    Object? isLoading = null,
     Object? isAdded = freezed,
   }) {
     return _then(_$_TripState(
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAdded: isAdded == freezed
+      isAdded: freezed == isAdded
           ? _value.isAdded
           : isAdded // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -330,18 +339,17 @@ class _$_TripState implements _TripState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TripState &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other.isAdded, isAdded));
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.isAdded, isAdded) || other.isAdded == isAdded));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(isAdded));
+  int get hashCode => Object.hash(runtimeType, isLoading, isAdded);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TripStateCopyWith<_$_TripState> get copyWith =>
       __$$_TripStateCopyWithImpl<_$_TripState>(this, _$identity);
 }

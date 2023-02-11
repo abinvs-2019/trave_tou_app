@@ -11,7 +11,7 @@ part 'trip_bloc.freezed.dart';
 
 @injectable
 class TripBloc extends Bloc<TripEvent, TripState> {
-  final FirestoreFunctions firestoreFunctions;
+  final FirbaseFunctions firestoreFunctions;
 
   TripBloc(this.firestoreFunctions) : super(TripState.initial()) {
     on<_CreateTrip>((event, emit) {

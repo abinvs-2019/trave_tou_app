@@ -22,6 +22,10 @@ injectable
 To generate files fo Di, 
 
 
+// need sound for chat 
+// need to intergrate gmaps
+
+
 
 
 

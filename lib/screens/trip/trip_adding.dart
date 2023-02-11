@@ -31,7 +31,7 @@ class TripAdding extends StatelessWidget {
         child: Scaffold(
           body: TripAddBody(size: size),
           persistentFooterButtons: [
-            Container(
+            SizedBox(
                 height: MediaQuery.of(context).size.height * .07,
                 child: BlocBuilder<TripBloc, TripState>(
                   builder: (context, state) {
@@ -63,10 +63,7 @@ class TripAdding extends StatelessWidget {
 }
 
 class TripAddBody extends StatelessWidget {
-  const TripAddBody({
-    Key? key,
-    required this.size,
-  }) : super(key: key);
+  const TripAddBody({Key? key, required this.size}) : super(key: key);
 
   final Size size;
 
@@ -97,8 +94,6 @@ class TripAddBody extends StatelessWidget {
               ImagePicker().pickImage(source: ImageSource.gallery);
             },
             child: Container(
-                height: size.height * .20,
-                width: size.width * .90,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(width: 4)),
