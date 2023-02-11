@@ -29,10 +29,4 @@ Work Flow ->
 
    Special Feature (No Required) ->
     Track location to show the position of users it the trip using Gmap
-
-
-
-  Contributers
-
-  Abin vs,
-  Ashwin Raj
+Also add the device_info_plus package to get more details about the login device.
