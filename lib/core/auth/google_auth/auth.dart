@@ -10,7 +10,6 @@ import 'package:tourist_app/config/constants.dart';
 import 'package:tourist_app/config/firestore_collection.dart';
 import 'package:tourist_app/core/auth/google_auth/google_auth.dart';
 import 'package:tourist_app/core/auth/google_auth/logged_in.dart';
-import 'package:tourist_app/infrastructure/firestore/firestore.dart';
 
 @LazySingleton(as: IGoogleSigning)
 @injectable

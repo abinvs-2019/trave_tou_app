@@ -27,7 +27,7 @@ class FirebaseMessagingOverride {
         });
       });
 
-      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+      // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
       await FirebaseMessaging.instance
           .setForegroundNotificationPresentationOptions(

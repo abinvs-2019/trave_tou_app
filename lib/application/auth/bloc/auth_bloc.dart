@@ -37,6 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               profileImage: l.photoURL,
               name: l.displayName));
         }, (r) {
+          print('An error occured: $r');
           Fluttertoast.showToast(msg: r);
           emit(state.copyWith(
               isLogging: false, isLoggedIn: false, isError: true));

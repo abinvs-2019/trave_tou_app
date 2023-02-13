@@ -4,8 +4,7 @@ part of 'chat_bloc.dart';
 class ChatEvent with _$ChatEvent {
   const factory ChatEvent.getChatOnUsersId({required String userUid}) =
       _GetChatsId;
-  const factory ChatEvent.createChatRoom({required String uid}) =
-      _CreateChatRoom;
+
   const factory ChatEvent.sendMessage(
       {required String message,
       required String token,

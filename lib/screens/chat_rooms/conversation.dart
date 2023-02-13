@@ -36,8 +36,8 @@ class ConverstaionRoom extends StatelessWidget {
                           StreamBuilder(
                               stream: FirebaseFirestore.instance
                                   .collection(Collections.CHAT_DATA)
-                                  .doc(state.myId)
-                                  .collection(state.chatId!)
+                                  .doc(state.chatId)
+                                  .collection("chats")
                                   .orderBy('time')
                                   .snapshots(),
                               builder: (context, snapshot) {

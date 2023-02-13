@@ -22,33 +22,44 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc(this.firestore) : super(ChatState.initial()) {
     String? chatId;
     var myUId;
-    var eventUid;
     on<_GetChatsId>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       SharedPreferences preferences = await SharedPreferences.getInstance();
       myUId = preferences.getString(USER_IDENTITY_KEY);
       print('my uuid id: $myUId');
-      eventUid = eventUid;
       chatId = '${myUId}${event.userUid}';
+      var instanceofchatroom = await FirebaseFirestore.instance
+          .collection(Collections.CHAT_DATA)
+          .where('users', arrayContains: [event.userUid, myUId]).get();
+      print(instanceofchatroom.docs);
+      //If this instanceofchatroom is returning null then ther is no
+      //chat room, so create it
+      if (instanceofchatroom.docs.isEmpty) {
+        ///Creating the char room.
+        FirebaseFirestore.instance
+            .collection(Collections.CHAT_DATA)
+            .doc(chatId)
+            .set({
+          "users": [event.userUid, myUId]
+        }).catchError((e) {
+          print(e.toString());
+        });
+        emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
+      } else {
+        //Elese returning the same chat it.
+        emit(state.copyWith(chatId: chatId, myId: myUId));
+      }
       emit(state.copyWith(chatId: chatId, isLoading: false, myId: myUId));
-    });
-    on<_CreateChatRoom>((event, emit) {
-      FirebaseFirestore.instance.collection("ChatRoom").doc(chatId).set({
-        "users": [eventUid, myUId]
-      }).catchError((e) {
-        print(e.toString());
-      });
     });
     on<_SendMsg>((event, emit) {
       FirebaseFirestore.instance
           .collection(Collections.CHAT_DATA)
-          .doc(myUId)
-          .collection(chatId!)
+          .doc(state.chatId)
+          .collection("chats")
           .add({
         'msg': event.message,
         'time': DateTime.now().millisecondsSinceEpoch.toString(),
         'isSentBy': myUId,
-        'type': event.fileType
       });
       // CustomPushApi.sendCustomPush(token: event.token, body: event.message, title: 'New Message recieved');
     });
