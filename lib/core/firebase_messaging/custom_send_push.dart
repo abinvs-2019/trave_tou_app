@@ -33,9 +33,9 @@ class CustomPushApi {
       Response response = await post(
         Uri.parse('https://api.rnfirebase.io/messaging/send'),
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          "Authorization":
-              "key=AAAAUgQaLGE:APA91bH_oH3d6mcOAOlTHo6ZWet6Peo8hAJxwA4max1p09Z4hwdhu_YJGn_zuBtrCh8nYOYldXJc9hEEmqSzqOmhIHIT6fJY6Zgy6cDyOFXekyATWQBKs3w6WmCBpGzD0qjNsjzG6Pdi",
+          'Content-Type': 'application/json',
+          'Authorization':
+              'key=AAAAUgQaLGE:APA91bH_oH3d6mcOAOlTHo6ZWet6Peo8hAJxwA4max1p09Z4hwdhu_YJGn_zuBtrCh8nYOYldXJc9hEEmqSzqOmhIHIT6fJY6Zgy6cDyOFXekyATWQBKs3w6WmCBpGzD0qjNsjzG6Pdi',
         },
         body: constructFCMPayload(token, body: body),
       );

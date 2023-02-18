@@ -36,17 +36,17 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           .doc(chatId)
           .get();
       if (instanceofchatroom.exists == false) {
-        print('doc does not exist ');
         instanceofchatroom = await FirebaseFirestore.instance
             .collection(Collections.CHAT_DATA)
             .doc(inverseChatId)
             .get();
         if (instanceofchatroom.exists == true) {
-          print('doc does not exist inverseley');
           emit(state.copyWith(
               isLoading: false, chatId: inverseChatId, myId: myUId));
         } else {
-          print('creating chat room');
+        //If this instanceofchatroom is returning null then ther is no
+        //chat room, so create it
+        ///Creating the char room.
           FirebaseFirestore.instance
               .collection(Collections.CHAT_DATA)
               .doc(chatId)
@@ -58,10 +58,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
         }
       } else {
-        print('chat room already exist');
-        //If this instanceofchatroom is returning null then ther is no
-        //chat room, so create it
-        ///Creating the char room.
         emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
       }
     });
