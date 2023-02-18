@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,36 +23,50 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc(this.firestore) : super(ChatState.initial()) {
     String? chatId;
     var myUId;
+
     on<_GetChatsId>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       SharedPreferences preferences = await SharedPreferences.getInstance();
       myUId = preferences.getString(USER_IDENTITY_KEY);
-      print('my uuid id: $myUId');
       chatId = '${myUId}${event.userUid}';
+      var inverseChatId = '${event.userUid}${myUId}';
+
       var instanceofchatroom = await FirebaseFirestore.instance
           .collection(Collections.CHAT_DATA)
-          .where('users', arrayContains: [event.userUid, myUId]).get();
-      print(instanceofchatroom.docs);
-      //If this instanceofchatroom is returning null then ther is no
-      //chat room, so create it
-      if (instanceofchatroom.docs.isEmpty) {
-        ///Creating the char room.
-        FirebaseFirestore.instance
+          .doc(chatId)
+          .get();
+      if (instanceofchatroom.exists == false) {
+        print('doc does not exist ');
+        instanceofchatroom = await FirebaseFirestore.instance
             .collection(Collections.CHAT_DATA)
-            .doc(chatId)
-            .set({
-          "users": [event.userUid, myUId]
-        }).catchError((e) {
-          print(e.toString());
-        });
-        emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
+            .doc(inverseChatId)
+            .get();
+        if (instanceofchatroom.exists == true) {
+          print('doc does not exist inverseley');
+          emit(state.copyWith(
+              isLoading: false, chatId: inverseChatId, myId: myUId));
+        } else {
+          print('creating chat room');
+          FirebaseFirestore.instance
+              .collection(Collections.CHAT_DATA)
+              .doc(chatId)
+              .set({
+            "users": [event.userUid, myUId]
+          }).catchError((e) {
+            print(e.toString());
+          });
+          emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
+        }
       } else {
-        //Elese returning the same chat it.
-        emit(state.copyWith(chatId: chatId, myId: myUId));
+        print('chat room already exist');
+        //If this instanceofchatroom is returning null then ther is no
+        //chat room, so create it
+        ///Creating the char room.
+        emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
       }
-      emit(state.copyWith(chatId: chatId, isLoading: false, myId: myUId));
     });
     on<_SendMsg>((event, emit) {
+      CustomPushApi().sendPushMessage(token: event.token, body: event.message);
       FirebaseFirestore.instance
           .collection(Collections.CHAT_DATA)
           .doc(state.chatId)
@@ -61,7 +76,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         'time': DateTime.now().millisecondsSinceEpoch.toString(),
         'isSentBy': myUId,
       });
-      // CustomPushApi.sendCustomPush(token: event.token, body: event.message, title: 'New Message recieved');
+      CustomPushApi.sendCustomPush(
+          token: event.token,
+          body: event.message,
+          title: 'New Message recieved');
     });
     on<_UploadToStorage>((event, emit) async {
       var isUploaed = await firestore.firebaseStroageUpload(event.filePath);

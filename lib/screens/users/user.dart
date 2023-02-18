@@ -53,7 +53,9 @@ class _UsersListState extends State<UsersList> {
                             leading: CircleAvatar(
                                 backgroundImage:
                                     NetworkImage(data['Profile_image'])),
-                            onTap: () {},
+                            onTap: () {
+                              // Need to see photo briefly
+                            },
                             title: BlocBuilder<AuthBloc, AuthState>(
                                 builder: (context, state) {
                               if (data['USER_NAME'] == state.name) {
@@ -73,10 +75,10 @@ class _UsersListState extends State<UsersList> {
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         ConverstaionRoom(
-                                                          userUUID:
-                                                              data['uuid'],
-                                                          token: data['token'],
-                                                        )));
+                                                            userUUID:
+                                                                data['uuid'],
+                                                            token: data[
+                                                                'token'])));
                                           },
                                           icon: const Icon(Icons.message))
                                       : Row(
@@ -91,11 +93,10 @@ class _UsersListState extends State<UsersList> {
                                                       MaterialPageRoute(
                                                           builder: (context) =>
                                                               ConverstaionRoom(
-                                                                userUUID: data[
-                                                                    'uuid'],
-                                                                token: data[
-                                                                    'token'],
-                                                              )));
+                                                                  userUUID: data[
+                                                                      'uuid'],
+                                                                  token: data[
+                                                                      'token'])));
                                                 },
                                                 icon: const Icon(Icons.message))
                                           ],

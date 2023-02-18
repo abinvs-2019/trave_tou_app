@@ -1,8 +1,43 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tourist_app/infrastructure/firestore/firestore.dart';
+
+//Firebase notification trigger when on background
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
+  //Creating the android channel
+  AndroidNotificationChannel channel = const AndroidNotificationChannel(
+      'high_importance_channel', // id
+      'High Importance Notifications', // title
+      // description
+      importance: Importance.max,
+      playSound: true);
+
+  RemoteNotification? notification = message.notification;
+  AndroidNotification? android = message.notification?.android;
+  AppleNotification? ios = message.notification?.apple;
+
+  flutterLocalNotificationsPlugin!.show(
+    notification.hashCode,
+    notification!.title!,
+    notification.body,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        channel.id,
+        channel.name,
+        color: Colors.white,
+        priority: Priority.max,
+        importance: Importance.max,
+        channelShowBadge: true,
+        enableVibration: true,
+        playSound: true,
+        enableLights: true,
+        icon: '@mipmap-hdpi/ic_launcher.png',
+      ),
+    ),
+  );
+}
 
 class FirebaseMessagingOverride {
   FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
@@ -27,8 +62,6 @@ class FirebaseMessagingOverride {
         });
       });
 
-      // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-
       await FirebaseMessaging.instance
           .setForegroundNotificationPresentationOptions(
               alert: true, badge: true, sound: true);
@@ -39,33 +72,6 @@ class FirebaseMessagingOverride {
     } catch (e) {
       print('Eroor on initilizong push notifictaion \n$e');
     }
-  }
-
-//Firebase notification trigger when on background
-  Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-    RemoteNotification? notification = message.notification;
-    AndroidNotification? android = message.notification?.android;
-    AppleNotification? ios = message.notification?.apple;
-
-    flutterLocalNotificationsPlugin!.show(
-      notification.hashCode,
-      notification!.title!,
-      notification.body,
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          channel.id,
-          channel.name,
-          color: Colors.white,
-          priority: Priority.max,
-          importance: Importance.max,
-          channelShowBadge: true,
-          enableVibration: true,
-          playSound: true,
-          enableLights: true,
-          icon: '@mipmap-hdpi/ic_launcher.png',
-        ),
-      ),
-    );
   }
 
 //Showing when in foreground
