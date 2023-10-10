@@ -131,6 +131,8 @@ class TripAddBody extends StatelessWidget {
                       child: InkWell(
                           onTap: () {
                             showCustomDateRangePicker(context,
+                                backgroundColor: Colors.black,
+                                primaryColor: Colors.black,
                                 dismissible: true,
                                 minimumDate: DateTime.now(),
                                 maximumDate: DateTime(2030),
@@ -138,10 +140,7 @@ class TripAddBody extends StatelessWidget {
                               tripCreateModel = tripCreateModel.copyWith(
                                   fromDate: start.toString(),
                                   toDate: end.toString());
-                            }, onCancelClick: () {
-                              Fluttertoast.showToast(
-                                  msg: 'Please select a Valid Date');
-                            });
+                            }, onCancelClick: () {});
                           },
                           child: Container(
                               decoration: BoxDecoration(

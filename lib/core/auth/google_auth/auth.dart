@@ -106,8 +106,8 @@ class Auth implements IGoogleSigning, ILoggedIn {
   @override
   Future signOut() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signOut();
+    // logout from google
+    await googleSignIn.signOut();
     return true;
   }
 }

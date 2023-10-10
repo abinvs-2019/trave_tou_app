@@ -37,7 +37,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               profileImage: l.photoURL,
               name: l.displayName));
         }, (r) {
-          print('An error occured: $r');
           Fluttertoast.showToast(msg: r);
           emit(state.copyWith(
               isLogging: false, isLoggedIn: false, isError: true));
@@ -46,6 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         tapCount++;
       }
     });
+    
     on<_APP_SESSION>((event, emit) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       bool? session = await preferences.getBool(SESSION_KEY);
