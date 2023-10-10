@@ -35,15 +35,20 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           .collection(Collections.CHAT_DATA)
           .doc(chatId)
           .get();
+
+      List<String> characters = chatId?.split('') ?? [];
+      // Reverse the order and join the characters
+      String reversedId = characters.reversed.join();
+      
       var instanceofcharoomreverse = await FirebaseFirestore.instance
           .collection(Collections.CHAT_DATA)
-          .doc(chatId)
+          .doc(reversedId)
           .get();
 
       if (instanceofchatroom.exists == false) {
         emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
       } else if (instanceofcharoomreverse.exists == false) {
-        emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
+        emit(state.copyWith(isLoading: false, chatId: reversedId, myId: myUId));
       } else {
         //If this instanceofchatroom is returning null then ther is no
         //chat room, so create it

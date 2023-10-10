@@ -44,7 +44,8 @@ class Auth implements IGoogleSigning, ILoggedIn {
         }
       }
     } catch (e) {
-      return const Right('Google-SingInError-Occured');
+      print(e);
+      return Right('Google-SingInError-Occured $e');
     }
     if (user != null) {
       return Left(user);
