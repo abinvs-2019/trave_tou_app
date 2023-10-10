@@ -28,7 +28,8 @@ class ConverstaionRoom extends StatelessWidget {
           return state.isLoading
               ? const Center(child: CircularProgressIndicator())
               : state.isError
-                  ? const Center(child: Text('Error Occured while loading'))
+                  ? const Center(
+                      child: Text('Error Occured while loading chats'))
                   : SingleChildScrollView(
                       reverse: true,
                       child: Column(
@@ -197,10 +198,11 @@ class ConverstaionRoom extends StatelessWidget {
 
 enum FileType { img, video, audio, chat }
 
-class CustomFileUploadWidget extends StatelessWidget {
-  CustomFileUploadWidget(
-      {super.key, required FileType type, required this.imagePath});
-  File imagePath;
+class CustomFileUploadWidget extends CloudImageWidget {
+  final File imagePath;
+
+  const CustomFileUploadWidget(this.imagePath,
+      {required super.type, required super.imagePathUrl});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -211,10 +213,10 @@ class CustomFileUploadWidget extends StatelessWidget {
   }
 }
 
-class CustomFileDownloadWidget extends StatelessWidget {
-  CustomFileDownloadWidget(
+class CloudImageWidget extends StatelessWidget {
+  const CloudImageWidget(
       {super.key, required FileType type, required this.imagePathUrl});
-  String imagePathUrl;
+  final String imagePathUrl;
   @override
   Widget build(BuildContext context) {
     return Container(

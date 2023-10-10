@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_app/config/constants.dart';
@@ -28,36 +29,34 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       emit(state.copyWith(isLoading: true));
       SharedPreferences preferences = await SharedPreferences.getInstance();
       myUId = preferences.getString(USER_IDENTITY_KEY);
-      chatId = '${myUId}${event.userUid}';
-      var inverseChatId = '${event.userUid}${myUId}';
+      chatId = '${myUId}_${event.userUid}';
 
       var instanceofchatroom = await FirebaseFirestore.instance
           .collection(Collections.CHAT_DATA)
           .doc(chatId)
           .get();
+      var instanceofcharoomreverse = await FirebaseFirestore.instance
+          .collection(Collections.CHAT_DATA)
+          .doc(chatId)
+          .get();
+
       if (instanceofchatroom.exists == false) {
-        instanceofchatroom = await FirebaseFirestore.instance
-            .collection(Collections.CHAT_DATA)
-            .doc(inverseChatId)
-            .get();
-        if (instanceofchatroom.exists == true) {
-          emit(state.copyWith(
-              isLoading: false, chatId: inverseChatId, myId: myUId));
-        } else {
+        emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
+      } else if (instanceofcharoomreverse.exists == false) {
+        emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
+      } else {
         //If this instanceofchatroom is returning null then ther is no
         //chat room, so create it
         ///Creating the char room.
-          FirebaseFirestore.instance
-              .collection(Collections.CHAT_DATA)
-              .doc(chatId)
-              .set({
-            "users": [event.userUid, myUId]
-          }).catchError((e) {
-            print(e.toString());
-          });
-          emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
-        }
-      } else {
+        FirebaseFirestore.instance
+            .collection(Collections.CHAT_DATA)
+            .doc(chatId)
+            .set({
+          "users": [event.userUid, myUId]
+        }).catchError((e) {
+          Fluttertoast.showToast(msg: 'Error occured while loading the chats');
+        });
+
         emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
       }
     });

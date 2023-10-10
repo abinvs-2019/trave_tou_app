@@ -3,7 +3,6 @@
 import 'package:custom_date_range_picker/custom_date_range_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
