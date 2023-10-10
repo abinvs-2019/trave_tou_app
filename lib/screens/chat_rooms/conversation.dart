@@ -10,10 +10,10 @@ import 'package:tourist_app/application/file_transfer_firebase/file_transfer_blo
 import '../../config/firestore_collection.dart';
 
 class ConverstaionRoom extends StatelessWidget {
-  TextEditingController controller = TextEditingController();
   ConverstaionRoom({super.key, required this.userUUID, required this.token});
-  String userUUID, token;
-  final player = AudioPlayer();
+  final String userUUID, token;
+  final TextEditingController controller = TextEditingController();
+  final AudioPlayer player = AudioPlayer();
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -28,7 +28,7 @@ class ConverstaionRoom extends StatelessWidget {
           return state.isLoading
               ? const Center(child: CircularProgressIndicator())
               : state.isError
-                  ? const Center(child: Text('Error Occure while loading'))
+                  ? const Center(child: Text('Error Occured while loading'))
                   : SingleChildScrollView(
                       reverse: true,
                       child: Column(
@@ -51,7 +51,8 @@ class ConverstaionRoom extends StatelessWidget {
                                   return Column(
                                     children: [
                                       ListView.builder(
-                                        itemCount: snapshot.data!.docs.length,
+                                        itemCount:
+                                            snapshot.data?.docs.length ?? 0,
                                         shrinkWrap: true,
                                         physics:
                                             const NeverScrollableScrollPhysics(),

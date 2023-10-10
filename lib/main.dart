@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
 import 'package:tourist_app/application/chat/bloc/chat_bloc.dart';
 import 'package:tourist_app/application/file_transfer_firebase/file_transfer_bloc.dart';
@@ -11,21 +10,16 @@ import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/core/firebase_messaging/firebase_messaging.dart';
 import 'package:tourist_app/screens/splash/splash.dart';
 
+import 'core/permissions/permissions.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await FirebaseMessagingOverride().init();
-  handlePermmision();
+  Permissions.handlePermmision();
   runApp(const MyApp());
-}
-
-handlePermmision() async {
-  await Permission.accessMediaLocation.request();
-  await Permission.storage.request();
-  await Permission.audio.request();
-  await Permission.manageExternalStorage.request();
 }
 
 class MyApp extends StatelessWidget {

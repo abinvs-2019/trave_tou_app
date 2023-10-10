@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
@@ -14,13 +13,13 @@ class SplashScreen extends StatelessWidget {
       context.read<AuthBloc>().add(const AuthEvent.getSession());
     });
 
-    ///Added a dummy image to show how the app theme shuld look like
-    ///Please open asset folder to see the preview of the color theme of the app should be
+    // Added a dummy image to show how the app theme shuld look like
+    // Please open asset folder to see the preview of the color theme of the app should be
     return BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.isLoggedIn) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const HomePage()));
           } else {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()));

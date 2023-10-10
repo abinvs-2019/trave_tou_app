@@ -2,25 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
+import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/screens/chat_rooms/conversation.dart';
 import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 import '../../config/firestore_collection.dart';
 
-class UsersList extends StatefulWidget {
+class UsersList extends StatelessWidget {
   const UsersList({super.key, required this.selectable});
   final bool selectable;
 
   @override
-  State<UsersList> createState() => _UsersListState();
-}
-
-class _UsersListState extends State<UsersList> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Your Briends')),
-      body: widget.selectable
+      body: selectable
           ? StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection(Collections.USERS)
@@ -113,8 +109,8 @@ class _UsersListState extends State<UsersList> {
 }
 
 class ListViewBody extends StatefulWidget {
-  ListViewBody({super.key, required this.snapshot});
-  AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot;
+  const ListViewBody({super.key, required this.snapshot});
+  final AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot;
   @override
   State<ListViewBody> createState() => _ListViewBodyState();
 }
@@ -135,19 +131,17 @@ class _ListViewBodyState extends State<ListViewBody> {
         itemCount: widget.snapshot.data!.docs.length,
         itemBuilder: (context, index) {
           DocumentSnapshot data = widget.snapshot.data!.docs[index];
-          print(selectable[index]);
           return CheckboxListTile(
             value: selectable[index],
             // title: CircleAvatar(
             //     backgroundImage: NetworkImage(data['Profile_image'])),
 
-            title: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-              if (data['USER_NAME'] == state.name) {
-                return const Text('Me');
-              }
-              return Text(data['USER_NAME']);
-            }),
+            title: data['USER_NAME'] == getIt<AuthBloc>().state.name
+                ? const Text('Me')
+                : Text(data['USER_NAME']),
+
             onChanged: (bool? value) {
+              tripCreateModel = tripCreateModel.copyWith(users: user);
               setState(() {
                 selectable[index] = value!;
                 if (selectable[index] == true) {
@@ -155,7 +149,6 @@ class _ListViewBodyState extends State<ListViewBody> {
                     user.add(data['USER_NAME']);
                   }
                 }
-                tripCreateModel = tripCreateModel.copyWith(users: user);
               });
             },
           );
