@@ -44,7 +44,6 @@ class Auth implements IGoogleSigning, ILoggedIn {
         }
       }
     } catch (e) {
-      print(e);
       return Right('Google-SingInError-Occured $e');
     }
     if (user != null) {
@@ -79,7 +78,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
         'Phone_Number': userData.phoneNumber,
         'uuid': userData.uid,
         'email': userData.email,
-        'role': '',
+        'role': 'user',
         'token': token
       });
 
@@ -96,6 +95,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
     } else {
       Fluttertoast.showToast(msg: 'Welcome Back');
     }
+    return;
   }
 
   @override

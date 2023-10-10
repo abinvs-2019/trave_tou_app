@@ -31,7 +31,8 @@ class CustomPushApi {
     }
     try {
       Response response = await post(
-        Uri.parse('https://api.rnfirebase.io/messaging/send'),
+        Uri.parse(
+            'https://fcm.googleapis.com/v1/projects/myproject-b5ae1/messages:send'),
         headers: <String, String>{
           'Content-Type': 'application/json',
           'Authorization':

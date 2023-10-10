@@ -29,25 +29,24 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       emit(state.copyWith(isLoading: true));
       SharedPreferences preferences = await SharedPreferences.getInstance();
       myUId = preferences.getString(USER_IDENTITY_KEY);
-      chatId = '${myUId}_${event.userUid}';
 
+      chatId = '${myUId}_${event.userUid}';
+      String reversedId = '${event.userUid}_${myUId}';
+      print(myUId);
+      Fluttertoast.showToast(msg: myUId);
       var instanceofchatroom = await FirebaseFirestore.instance
           .collection(Collections.CHAT_DATA)
           .doc(chatId)
           .get();
 
-      List<String> characters = chatId?.split('') ?? [];
-      // Reverse the order and join the characters
-      String reversedId = characters.reversed.join();
-      
       var instanceofcharoomreverse = await FirebaseFirestore.instance
           .collection(Collections.CHAT_DATA)
           .doc(reversedId)
           .get();
 
-      if (instanceofchatroom.exists == false) {
+      if (instanceofchatroom.exists) {
         emit(state.copyWith(isLoading: false, chatId: chatId, myId: myUId));
-      } else if (instanceofcharoomreverse.exists == false) {
+      } else if (instanceofcharoomreverse.exists) {
         emit(state.copyWith(isLoading: false, chatId: reversedId, myId: myUId));
       } else {
         //If this instanceofchatroom is returning null then ther is no
@@ -74,7 +73,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           .add({
         'msg': event.message,
         'time': DateTime.now().millisecondsSinceEpoch.toString(),
-        'isSentBy': myUId,
+        'isSentBy': state.myId,
       });
       CustomPushApi.sendCustomPush(
           token: event.token,

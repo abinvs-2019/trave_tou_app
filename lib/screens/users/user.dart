@@ -59,48 +59,18 @@ class UsersList extends StatelessWidget {
                               }
                               return Text(data['USER_NAME']);
                             }),
-                            trailing: BlocBuilder<AuthBloc, AuthState>(
-                              builder: (context, state) {
-                                if (data['USER_NAME'] != state.name) {
-                                  return data['role'] == null ||
-                                          data['role'] == ''
-                                      ? IconButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ConverstaionRoom(
-                                                            userUUID:
-                                                                data['uuid'],
-                                                            token: data[
-                                                                'token'])));
-                                          },
-                                          icon: const Icon(Icons.message))
-                                      : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(data['role']),
-                                            IconButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ConverstaionRoom(
-                                                                  userUUID: data[
-                                                                      'uuid'],
-                                                                  token: data[
-                                                                      'token'])));
-                                                },
-                                                icon: const Icon(Icons.message))
-                                          ],
-                                        );
-                                }
-                                return const SizedBox();
-                              },
-                            ));
+                            trailing: IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ConverstaionRoom(
+                                                  userName: data['USER_NAME'],
+                                                  userUUID: data['uuid'],
+                                                  token: data['token'])));
+                                },
+                                icon: const Icon(Icons.message)));
                       });
                 }
               }),

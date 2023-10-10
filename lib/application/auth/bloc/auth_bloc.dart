@@ -28,8 +28,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (tapCount >= 5) {
         emit(state.copyWith(isLogging: true));
         Either<User?, String> singIn = await _googleSigning.signInWithGoogle();
+
         singIn.fold((l) async {
-          await _googleSigning.postLoggedInData(userData: l);
+          _googleSigning.postLoggedInData(userData: l);
           emit(state.copyWith(
               isLogging: false,
               isLoggedIn: true,
