@@ -10,8 +10,12 @@ import 'package:tourist_app/application/file_transfer_firebase/file_transfer_blo
 import '../../config/firestore_collection.dart';
 
 class ConverstaionRoom extends StatelessWidget {
-  ConverstaionRoom({super.key, required this.userUUID, required this.token});
-  final String userUUID, token;
+  ConverstaionRoom(
+      {super.key,
+      required this.userUUID,
+      required this.token,
+      required this.userName});
+  final String userUUID, token, userName;
   final TextEditingController controller = TextEditingController();
   final AudioPlayer player = AudioPlayer();
   @override
@@ -22,13 +26,14 @@ class ConverstaionRoom extends StatelessWidget {
           .add(ChatEvent.getChatOnUsersId(userUid: userUUID));
     });
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text(userName)),
       body: BlocBuilder<ChatBloc, ChatState>(
         builder: (context, state) {
           return state.isLoading
               ? const Center(child: CircularProgressIndicator())
               : state.isError
-                  ? const Center(child: Text('Error Occured while loading'))
+                  ? const Center(
+                      child: Text('Error Occured while loading chats'))
                   : SingleChildScrollView(
                       reverse: true,
                       child: Column(
@@ -80,10 +85,10 @@ class ConverstaionRoom extends StatelessWidget {
                                                 top: 10,
                                                 bottom: 10),
                                             child: Align(
-                                              alignment:
-                                                  ('isSentBy' == "${state.myId}"
-                                                      ? Alignment.topLeft
-                                                      : Alignment.topRight),
+                                              alignment: (data['isSentBy'] ==
+                                                      "${state.myId}"
+                                                  ? Alignment.topRight
+                                                  : Alignment.topLeft),
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.only(
@@ -102,23 +107,48 @@ class ConverstaionRoom extends StatelessWidget {
                                                       bottomRight:
                                                           const Radius.circular(
                                                               1)),
-                                                  color: ('isSentBy' ==
+                                                  color: (data['isSentBy'] ==
                                                           "${state.myId}"
-                                                      ? Colors.grey.shade200
-                                                      : Colors.green),
+                                                      ? const Color.fromARGB(
+                                                          255, 93, 93, 93)
+                                                      : const Color.fromARGB(
+                                                          255, 52, 111, 54)),
                                                 ),
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 15,
                                                         vertical: 5),
                                                 child: Column(
+                                                  crossAxisAlignment: data[
+                                                              'isSentBy'] ==
+                                                          "${state.myId}"
+                                                      ? CrossAxisAlignment.start
+                                                      : CrossAxisAlignment.end,
                                                   children: [
                                                     Text(
                                                       data['msg'].toString(),
                                                       style: const TextStyle(
                                                           fontSize: 12),
                                                     ),
-                                                    Text(date.toString())
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        const SizedBox.shrink(),
+                                                        Text(
+                                                          '${date.day}${date.month}${date.year}',
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontSize: 5),
+                                                        ),
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                               ),
@@ -197,10 +227,11 @@ class ConverstaionRoom extends StatelessWidget {
 
 enum FileType { img, video, audio, chat }
 
-class CustomFileUploadWidget extends StatelessWidget {
-  CustomFileUploadWidget(
-      {super.key, required FileType type, required this.imagePath});
-  File imagePath;
+class CustomFileUploadWidget extends CloudImageWidget {
+  final File imagePath;
+
+  const CustomFileUploadWidget(this.imagePath,
+      {required super.type, required super.imagePathUrl});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -211,10 +242,10 @@ class CustomFileUploadWidget extends StatelessWidget {
   }
 }
 
-class CustomFileDownloadWidget extends StatelessWidget {
-  CustomFileDownloadWidget(
+class CloudImageWidget extends StatelessWidget {
+  const CloudImageWidget(
       {super.key, required FileType type, required this.imagePathUrl});
-  String imagePathUrl;
+  final String imagePathUrl;
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -57,7 +57,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
   //Need to store google auth data to firestore
   @override
   Future postLoggedInData({User? userData}) async {
-    var prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(SESSION_KEY, true);
     await prefs.setString(PROFILE_EMAIL_KEY, userData!.email!);
     await prefs.setString(PROFILE_IMAGE_KEY, userData.photoURL!);
@@ -78,7 +78,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
         'Phone_Number': userData.phoneNumber,
         'uuid': userData.uid,
         'email': userData.email,
-        'role': '',
+        'role': 'user',
         'token': token
       });
 
@@ -95,6 +95,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
     } else {
       Fluttertoast.showToast(msg: 'Welcome Back');
     }
+    return;
   }
 
   @override

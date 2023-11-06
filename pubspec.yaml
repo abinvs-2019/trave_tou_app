@@ -55,6 +55,10 @@ dependencies:
   google_fonts: ^5.1.0
   custom_date_range_picker: ^1.0.6
 
+  #view_core
+  google_maps_flutter: ^2.5.0
+  flutter_native_splash: ^2.3.5
+
   #StateManagement
   flutter_bloc: ^8.1.1
   freezed_annotation: ^2.1.0

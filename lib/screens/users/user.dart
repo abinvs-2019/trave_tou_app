@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/screens/chat_rooms/conversation.dart';
-import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 import '../../config/firestore_collection.dart';
 
@@ -59,48 +58,18 @@ class UsersList extends StatelessWidget {
                               }
                               return Text(data['USER_NAME']);
                             }),
-                            trailing: BlocBuilder<AuthBloc, AuthState>(
-                              builder: (context, state) {
-                                if (data['USER_NAME'] != state.name) {
-                                  return data['role'] == null ||
-                                          data['role'] == ''
-                                      ? IconButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ConverstaionRoom(
-                                                            userUUID:
-                                                                data['uuid'],
-                                                            token: data[
-                                                                'token'])));
-                                          },
-                                          icon: const Icon(Icons.message))
-                                      : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(data['role']),
-                                            IconButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ConverstaionRoom(
-                                                                  userUUID: data[
-                                                                      'uuid'],
-                                                                  token: data[
-                                                                      'token'])));
-                                                },
-                                                icon: const Icon(Icons.message))
-                                          ],
-                                        );
-                                }
-                                return const SizedBox();
-                              },
-                            ));
+                            trailing: IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ConverstaionRoom(
+                                                  userName: data['USER_NAME'],
+                                                  userUUID: data['uuid'],
+                                                  token: data['token'])));
+                                },
+                                icon: const Icon(Icons.message)));
                       });
                 }
               }),
@@ -141,7 +110,7 @@ class _ListViewBodyState extends State<ListViewBody> {
                 : Text(data['USER_NAME']),
 
             onChanged: (bool? value) {
-              tripCreateModel = tripCreateModel.copyWith(users: user);
+        
               setState(() {
                 selectable[index] = value!;
                 if (selectable[index] == true) {

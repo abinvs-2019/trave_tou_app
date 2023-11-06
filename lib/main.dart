@@ -8,6 +8,7 @@ import 'package:tourist_app/application/file_transfer_firebase/file_transfer_blo
 import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/core/firebase_messaging/firebase_messaging.dart';
+import 'package:tourist_app/firebase_options.dart';
 import 'package:tourist_app/screens/splash/splash.dart';
 
 import 'core/permissions/permissions.dart';
@@ -15,7 +16,7 @@ import 'core/permissions/permissions.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await FirebaseMessagingOverride().init();
   Permissions.handlePermmision();

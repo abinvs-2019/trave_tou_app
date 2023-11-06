@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:auth_buttons/auth_buttons.dart'
     show GoogleAuthButton, AuthButtonStyle, AuthButtonType;
@@ -16,7 +14,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        log("$state");
         if (state.isLoggedIn) {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const HomePage()));
@@ -26,7 +23,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.15,
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

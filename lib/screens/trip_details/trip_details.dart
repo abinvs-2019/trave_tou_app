@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Trip_Details extends StatelessWidget {
-  const Trip_Details({super.key});
+class TripDetails extends StatelessWidget {
+  const TripDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
