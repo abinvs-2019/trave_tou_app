@@ -44,7 +44,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
         }
       }
     } catch (e) {
-      return Right('Google-SingInError-Occured $e');
+      return const Right('Google-SingInError-Occured');
     }
     if (user != null) {
       return Left(user);
@@ -57,7 +57,7 @@ class Auth implements IGoogleSigning, ILoggedIn {
   //Need to store google auth data to firestore
   @override
   Future postLoggedInData({User? userData}) async {
-    var prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(SESSION_KEY, true);
     await prefs.setString(PROFILE_EMAIL_KEY, userData!.email!);
     await prefs.setString(PROFILE_IMAGE_KEY, userData.photoURL!);

@@ -67,7 +67,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       }
     });
+    
     on<_APP_Logout>((event, emit) async {
+      _googleSigning.signOut();
       SharedPreferences preferences = await SharedPreferences.getInstance();
       preferences.clear();
       emit(state.copyWith(logout: true));

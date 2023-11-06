@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
 import 'package:tourist_app/screens/auth/login.dart';
 
@@ -21,18 +20,20 @@ class ProfilePage extends StatelessWidget {
         },
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                    backgroundImage: NetworkImage(state.profileImage!)),
-                ElevatedButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(const AuthEvent.logout());
-                    },
-                    child: const Text('Logout'))
-              ],
+            return Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                      backgroundImage: NetworkImage(state.profileImage!)),
+                  ElevatedButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(const AuthEvent.logout());
+                      },
+                      child: const Text('Logout'))
+                ],
+              ),
             );
           },
         ),

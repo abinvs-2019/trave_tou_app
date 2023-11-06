@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
 import 'package:tourist_app/screens/chat_rooms/conversation.dart';
-import 'package:tourist_app/screens/trip/trip_adding.dart';
 
 import '../../config/firestore_collection.dart';
 
@@ -111,7 +110,7 @@ class _ListViewBodyState extends State<ListViewBody> {
                 : Text(data['USER_NAME']),
 
             onChanged: (bool? value) {
-              tripCreateModel = tripCreateModel.copyWith(users: user);
+        
               setState(() {
                 selectable[index] = value!;
                 if (selectable[index] == true) {
