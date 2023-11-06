@@ -23,7 +23,7 @@ class CustomPushApi {
         headers: <String, String>{
           'Content-Type': 'application/json',
           'Authorization':
-              'key=AAAAUgQaLGE:APA91bH_oH3d6mcOAOlTHo6ZWet6Peo8hAJxwA4max1p09Z4hwdhu_YJGn_zuBtrCh8nYOYldXJc9hEEmqSzqOmhIHIT6fJY6Zgy6cDyOFXekyATWQBKs3w6WmCBpGzD0qjNsjzG6Pdi',
+              'key=',
         },
         body: constructFCMPayload(token, body: body),
       );
@@ -41,7 +41,7 @@ class CustomPushApi {
       Map<String, String> header = {
         "Content-Type": "application/json",
         "Authorization":
-            "key=AAAAUgQaLGE:APA91bH_oH3d6mcOAOlTHo6ZWet6Peo8hAJxwA4max1p09Z4hwdhu_YJGn_zuBtrCh8nYOYldXJc9hEEmqSzqOmhIHIT6fJY6Zgy6cDyOFXekyATWQBKs3w6WmCBpGzD0qjNsjzG6Pdi",
+            "key=",
       };
       Map<String, Object> request = {
         'notification': {'title': title, 'body': body},
