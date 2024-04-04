@@ -24,7 +24,7 @@ class UsersList extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (!snapshot.hasData) {
-                  return const Text('No Data...');
+                  return const Text('No Data for now.');
                 } else {
                   return ListViewBody(snapshot: snapshot);
                 }
