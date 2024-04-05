@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
 import 'package:tourist_app/config/firestore_collection.dart';
 import 'package:tourist_app/screens/profile/profile.dart';
-import 'package:tourist_app/screens/trip/trip_adding.dart';
 import 'package:tourist_app/screens/users/user.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,11 +26,16 @@ class HomePage extends StatelessWidget {
               return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
-                    DocumentSnapshot data = snapshot.data!.docs[index];
+                    DocumentSnapshot? data;
+                    if (snapshot.data?.docs[index] != null) {
+                      data = snapshot.data!.docs[index];
+                    } else {
+                      Navigator.pop(context);
+                    }
                     return ListTile(
                       leading: CircleAvatar(
                         child: Center(
-                          child: Text(data['Trip_name']
+                          child: Text(data!['Trip_name']
                               .toString()
                               .characters
                               .take(1)
@@ -39,9 +43,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       onTap: () {},
-                      title: Text(
-                        data['Trip_name'],
-                      ),
+                      title: Text(data['Trip_name']),
                       trailing: Text('\u{20B9}${data['Expense']}'),
                       subtitle: Row(
                         children: [
@@ -64,14 +66,13 @@ class HomePage extends StatelessWidget {
             children: [
               Column(children: [
                 DrawerHeader(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage('${state.profileImage}'),
-                          fit: BoxFit.cover)),
-                  child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text('${state.name}')),
-                ),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage('${state.profileImage}'),
+                            fit: BoxFit.cover)),
+                    child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text('${state.name}'))),
                 ListTile(
                     title: const Text('Profile'),
                     onTap: () {
@@ -86,7 +87,8 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const UsersList()));
+                              builder: (context) =>
+                                  const UsersList(selectable: false)));
                     }),
               ]),
               Container(
@@ -99,8 +101,8 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const TripAdding()));
+            // Navigator.of(context).push(
+            //     MaterialPageRoute(builder: (context) => const TripAdding()));
           },
           child: const Icon(Icons.add)),
     );

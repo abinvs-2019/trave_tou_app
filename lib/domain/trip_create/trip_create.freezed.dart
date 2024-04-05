@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'trip_create.dart';
 
@@ -24,6 +24,7 @@ mixin _$TripCreateModel {
   String get fromDate => throw _privateConstructorUsedError;
   String get toDate => throw _privateConstructorUsedError;
   String get expense => throw _privateConstructorUsedError;
+  List<dynamic> get users => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,44 +36,57 @@ mixin _$TripCreateModel {
 abstract class $TripCreateModelCopyWith<$Res> {
   factory $TripCreateModelCopyWith(
           TripCreateModel value, $Res Function(TripCreateModel) then) =
-      _$TripCreateModelCopyWithImpl<$Res>;
-  $Res call({String name, String fromDate, String toDate, String expense});
+      _$TripCreateModelCopyWithImpl<$Res, TripCreateModel>;
+  @useResult
+  $Res call(
+      {String name,
+      String fromDate,
+      String toDate,
+      String expense,
+      List<dynamic> users});
 }
 
 /// @nodoc
-class _$TripCreateModelCopyWithImpl<$Res>
+class _$TripCreateModelCopyWithImpl<$Res, $Val extends TripCreateModel>
     implements $TripCreateModelCopyWith<$Res> {
   _$TripCreateModelCopyWithImpl(this._value, this._then);
 
-  final TripCreateModel _value;
   // ignore: unused_field
-  final $Res Function(TripCreateModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? fromDate = freezed,
-    Object? toDate = freezed,
-    Object? expense = freezed,
+    Object? name = null,
+    Object? fromDate = null,
+    Object? toDate = null,
+    Object? expense = null,
+    Object? users = null,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      fromDate: fromDate == freezed
+      fromDate: null == fromDate
           ? _value.fromDate
           : fromDate // ignore: cast_nullable_to_non_nullable
               as String,
-      toDate: toDate == freezed
+      toDate: null == toDate
           ? _value.toDate
           : toDate // ignore: cast_nullable_to_non_nullable
               as String,
-      expense: expense == freezed
+      expense: null == expense
           ? _value.expense
           : expense // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+    ) as $Val);
   }
 }
 
@@ -83,44 +97,53 @@ abstract class _$$_TripCreateModelCopyWith<$Res>
           _$_TripCreateModel value, $Res Function(_$_TripCreateModel) then) =
       __$$_TripCreateModelCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String fromDate, String toDate, String expense});
+  @useResult
+  $Res call(
+      {String name,
+      String fromDate,
+      String toDate,
+      String expense,
+      List<dynamic> users});
 }
 
 /// @nodoc
 class __$$_TripCreateModelCopyWithImpl<$Res>
-    extends _$TripCreateModelCopyWithImpl<$Res>
+    extends _$TripCreateModelCopyWithImpl<$Res, _$_TripCreateModel>
     implements _$$_TripCreateModelCopyWith<$Res> {
   __$$_TripCreateModelCopyWithImpl(
       _$_TripCreateModel _value, $Res Function(_$_TripCreateModel) _then)
-      : super(_value, (v) => _then(v as _$_TripCreateModel));
+      : super(_value, _then);
 
-  @override
-  _$_TripCreateModel get _value => super._value as _$_TripCreateModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? fromDate = freezed,
-    Object? toDate = freezed,
-    Object? expense = freezed,
+    Object? name = null,
+    Object? fromDate = null,
+    Object? toDate = null,
+    Object? expense = null,
+    Object? users = null,
   }) {
     return _then(_$_TripCreateModel(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      fromDate: fromDate == freezed
+      fromDate: null == fromDate
           ? _value.fromDate
           : fromDate // ignore: cast_nullable_to_non_nullable
               as String,
-      toDate: toDate == freezed
+      toDate: null == toDate
           ? _value.toDate
           : toDate // ignore: cast_nullable_to_non_nullable
               as String,
-      expense: expense == freezed
+      expense: null == expense
           ? _value.expense
           : expense // ignore: cast_nullable_to_non_nullable
               as String,
+      users: null == users
+          ? _value._users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ));
   }
 }
@@ -132,7 +155,9 @@ class _$_TripCreateModel implements _TripCreateModel {
       {required this.name,
       required this.fromDate,
       required this.toDate,
-      required this.expense});
+      required this.expense,
+      required final List<dynamic> users})
+      : _users = users;
 
   factory _$_TripCreateModel.fromJson(Map<String, dynamic> json) =>
       _$$_TripCreateModelFromJson(json);
@@ -145,10 +170,17 @@ class _$_TripCreateModel implements _TripCreateModel {
   final String toDate;
   @override
   final String expense;
+  final List<dynamic> _users;
+  @override
+  List<dynamic> get users {
+    if (_users is EqualUnmodifiableListView) return _users;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_users);
+  }
 
   @override
   String toString() {
-    return 'TripCreateModel(name: $name, fromDate: $fromDate, toDate: $toDate, expense: $expense)';
+    return 'TripCreateModel(name: $name, fromDate: $fromDate, toDate: $toDate, expense: $expense, users: $users)';
   }
 
   @override
@@ -156,23 +188,22 @@ class _$_TripCreateModel implements _TripCreateModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TripCreateModel &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.fromDate, fromDate) &&
-            const DeepCollectionEquality().equals(other.toDate, toDate) &&
-            const DeepCollectionEquality().equals(other.expense, expense));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.fromDate, fromDate) ||
+                other.fromDate == fromDate) &&
+            (identical(other.toDate, toDate) || other.toDate == toDate) &&
+            (identical(other.expense, expense) || other.expense == expense) &&
+            const DeepCollectionEquality().equals(other._users, _users));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(fromDate),
-      const DeepCollectionEquality().hash(toDate),
-      const DeepCollectionEquality().hash(expense));
+  int get hashCode => Object.hash(runtimeType, name, fromDate, toDate, expense,
+      const DeepCollectionEquality().hash(_users));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TripCreateModelCopyWith<_$_TripCreateModel> get copyWith =>
       __$$_TripCreateModelCopyWithImpl<_$_TripCreateModel>(this, _$identity);
 
@@ -189,7 +220,8 @@ abstract class _TripCreateModel implements TripCreateModel {
       {required final String name,
       required final String fromDate,
       required final String toDate,
-      required final String expense}) = _$_TripCreateModel;
+      required final String expense,
+      required final List<dynamic> users}) = _$_TripCreateModel;
 
   factory _TripCreateModel.fromJson(Map<String, dynamic> json) =
       _$_TripCreateModel.fromJson;
@@ -202,6 +234,8 @@ abstract class _TripCreateModel implements TripCreateModel {
   String get toDate;
   @override
   String get expense;
+  @override
+  List<dynamic> get users;
   @override
   @JsonKey(ignore: true)
   _$$_TripCreateModelCopyWith<_$_TripCreateModel> get copyWith =>

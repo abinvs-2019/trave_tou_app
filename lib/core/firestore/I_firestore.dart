@@ -1,5 +1,3 @@
-
-
 abstract class Firestore {
   // just a simple get
   Future getAllDataOfCollection(String collection);
@@ -15,4 +13,6 @@ abstract class Firestore {
 
   // deletes the entry with the given document id
   Future deleteEntry(String collection, String documentId);
+
+  updateToken(String token);
 }

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "352256142433-38h16aooveqs9bns876suv298stkgsod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tou.mobile.app",
+            "certificate_hash": "b9e7a36e984a8bc79caf41e324910a02b6100b5e"
+          }
+        },
+        {
           "client_id": "352256142433-r2oj77rhul47s93nnepq51mfq6064imp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -53,6 +61,13 @@
             {
               "client_id": "352256142433-7o8vmdtt408qdalbuonhg7rl90ueiq2s.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "352256142433-83pofg3tk9e03onfig0bm6dv65bdfh2r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.test.test"
+              }
             }
           ]
         }

@@ -1,18 +1,25 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_app/application/auth/bloc/auth_bloc.dart';
+import 'package:tourist_app/application/chat/bloc/chat_bloc.dart';
+import 'package:tourist_app/application/file_transfer_firebase/file_transfer_bloc.dart';
 import 'package:tourist_app/application/trip/bloc/trip_bloc.dart';
 import 'package:tourist_app/core/di/di.dart';
-import 'package:tourist_app/screens/auth/login.dart';
+import 'package:tourist_app/core/firebase_messaging/firebase_messaging.dart';
+import 'package:tourist_app/firebase_options.dart';
 import 'package:tourist_app/screens/splash/splash.dart';
-import 'package:tourist_app/screens/trip/trip_adding.dart';
+
+import 'core/permissions/permissions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  await Firebase.initializeApp();
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  await FirebaseMessagingOverride().init();
+  Permissions.handlePermmision();
   runApp(const MyApp());
 }
 
@@ -25,13 +32,16 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthBloc>(create: (context) => getIt<AuthBloc>()),
         BlocProvider<TripBloc>(create: (context) => getIt<TripBloc>()),
+        BlocProvider<ChatBloc>(create: (context) => getIt<ChatBloc>()),
+        BlocProvider<FileTransferBloc>(
+            create: (context) => getIt<FileTransferBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Trave Tou',
         themeMode: ThemeMode.dark,
         theme: ThemeData.dark(useMaterial3: true),
-        home: const TripAdding(),
+        home: const SplashScreen(),
       ),
     );
   }

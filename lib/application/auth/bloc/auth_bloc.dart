@@ -28,7 +28,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (tapCount >= 5) {
         emit(state.copyWith(isLogging: true));
         Either<User?, String> singIn = await _googleSigning.signInWithGoogle();
-        singIn.fold((l) {
+
+        singIn.fold((l) async {
           _googleSigning.postLoggedInData(userData: l);
           emit(state.copyWith(
               isLogging: false,
@@ -45,6 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         tapCount++;
       }
     });
+
     on<_APP_SESSION>((event, emit) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       bool? session = await preferences.getBool(SESSION_KEY);
@@ -65,7 +67,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       }
     });
+    
     on<_APP_Logout>((event, emit) async {
+      _googleSigning.signOut();
       SharedPreferences preferences = await SharedPreferences.getInstance();
       preferences.clear();
       emit(state.copyWith(logout: true));

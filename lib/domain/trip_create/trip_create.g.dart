@@ -12,6 +12,7 @@ _$_TripCreateModel _$$_TripCreateModelFromJson(Map<String, dynamic> json) =>
       fromDate: json['fromDate'] as String,
       toDate: json['toDate'] as String,
       expense: json['expense'] as String,
+      users: json['users'] as List<dynamic>,
     );
 
 Map<String, dynamic> _$$_TripCreateModelToJson(_$_TripCreateModel instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_TripCreateModelToJson(_$_TripCreateModel instance) =>
       'fromDate': instance.fromDate,
       'toDate': instance.toDate,
       'expense': instance.expense,
+      'users': instance.users,
     };

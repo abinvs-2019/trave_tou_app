@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:meta/meta.dart';
@@ -21,6 +22,7 @@ abstract class TripCreateModel with _$TripCreateModel {
     required String fromDate,
     required String toDate,
     required String expense,
+    required List users,
   }) = _TripCreateModel;
 
   factory TripCreateModel.fromJson(Map<String, dynamic> json) =>
